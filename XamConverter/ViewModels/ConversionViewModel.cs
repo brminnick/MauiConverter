@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace ConverterApp
+namespace XamConverter
 {
 	public class ConversionViewModel : BaseViewModel
 	{

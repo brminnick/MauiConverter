@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace ConverterApp
+namespace XamConverter
 {
 	public class BaseContentPage<TViewModel> : ContentPage where TViewModel : BaseViewModel, new()
 	{

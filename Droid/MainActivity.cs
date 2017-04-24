@@ -2,7 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 
-namespace ConverterApp.Droid
+namespace XamConverter.Droid
 {
 	[Activity(Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

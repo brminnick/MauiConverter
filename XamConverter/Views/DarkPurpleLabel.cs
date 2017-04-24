@@ -1,7 +1,8 @@
 ﻿using Xamarin.Forms;
 
-namespace ConverterApp
+namespace XamConverter
 {
+	#region Constructors
 	public class DarkPurpleLabel : Label
 	{
 		public DarkPurpleLabel()
@@ -10,4 +11,5 @@ namespace ConverterApp
 			VerticalTextAlignment = TextAlignment.Center;
 		}
 	}
+	#endregion
 }

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace ConverterApp
+namespace XamConverter
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{

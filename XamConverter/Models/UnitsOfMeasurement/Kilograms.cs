@@ -1,5 +1,4 @@
-﻿using System;
-namespace ConverterApp
+﻿namespace XamConverter
 {
 	public class Kilograms : ConverterClassSingleton<Kilograms>
 	{

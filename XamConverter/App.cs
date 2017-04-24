@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace ConverterApp
+namespace XamConverter
 {
 	public class App : Application
 	{

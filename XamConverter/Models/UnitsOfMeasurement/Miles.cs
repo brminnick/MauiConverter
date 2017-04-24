@@ -1,4 +1,4 @@
-﻿namespace ConverterApp
+﻿namespace XamConverter
 {
 	public class Miles : ConverterClassSingleton<Miles>
 	{

@@ -1,14 +1,11 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace ConverterApp
+namespace XamConverter
 {
 	public class UnitsPicker : Picker
 	{
-		#region Fields
-		Command _selectedIndexChangedCommand;
-		#endregion
-
+		#region Properties
 		public static readonly BindableProperty SelectedIndexChangedCommandProperty =
 			BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(Command), typeof(UnitsPicker), null);
 
@@ -17,16 +14,21 @@ namespace ConverterApp
 			get { return (Command)GetValue(SelectedIndexChangedCommandProperty); }
 			set { SetValue(SelectedIndexChangedCommandProperty, value); }
 		}
+		#endregion
 
+		#region Constructors
 		public UnitsPicker()
 		{
 			BackgroundColor = ColorConstants.LightestPurple;
 			SelectedIndexChanged += HandleSelectedIndexChanged;
 		}
+		#endregion
 
+		#region Methods
 		void HandleSelectedIndexChanged(object sender, EventArgs e)
 		{
 			SelectedIndexChangedCommand?.Execute(null);
 		}
+		#endregion
 	}
 }

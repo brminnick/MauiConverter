@@ -1,4 +1,4 @@
-namespace ConverterApp
+namespace XamConverter
 {
 	public abstract class ConverterClassSingleton<T> : UnitOfMeasurementModel where T : UnitOfMeasurementModel, new()
 	{
