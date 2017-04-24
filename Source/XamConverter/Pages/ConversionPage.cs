@@ -69,8 +69,8 @@ namespace XamConverter
 					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
 					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
 					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
-					new RowDefinition { Height = new GridLength(2, GridUnitType.Star) },
-					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) }
+					new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
+					new RowDefinition { Height = new GridLength(2, GridUnitType.Star) }
 				},
 				ColumnDefinitions = {
 					new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
@@ -90,11 +90,11 @@ namespace XamConverter
 			gridLayout.Children.Add(convertedUnitsLabel, 0, 3);
 			gridLayout.Children.Add(convertedUnitsPicker, 1, 3);
 
-			gridLayout.Children.Add(convertButton, 0, 4);
-			Grid.SetColumnSpan(convertButton, 2);
-
-			gridLayout.Children.Add(convertedNumberLabel, 0, 5);
+			gridLayout.Children.Add(convertedNumberLabel, 0, 4);
 			Grid.SetColumnSpan(convertedNumberLabel, 2);
+
+			gridLayout.Children.Add(convertButton, 0, 5);
+			Grid.SetColumnSpan(convertButton, 2);
 
 			Content = gridLayout;
 		}

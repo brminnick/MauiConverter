@@ -192,7 +192,7 @@ namespace XamConverter
 
 			var inputAsConvertedUnits = secondItemSelectedType.ConvertFromBaseUnits(inputAsBaseUnits);
 
-			ConvertedNumberLabelText = inputAsConvertedUnits.ToString("N");
+			ConvertedNumberLabelText = $"{NumberToConvertEntryText} {OriginalUnitsPickerSelectedItem} = {inputAsConvertedUnits.ToString("N")} {ConvertedUnitsPickerSelectedItem}";
 
 		}
 		#endregion
