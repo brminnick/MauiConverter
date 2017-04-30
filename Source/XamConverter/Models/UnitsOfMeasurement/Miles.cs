@@ -1,6 +1,6 @@
 ﻿namespace XamConverter
 {
-	public class Miles : ConverterClassSingleton<Miles>
+	public class Miles : UnitOfMeasurementSingleton<Miles>
 	{
 		public Miles() : base(UnitOfMeasurement.Length)
 		{

@@ -1,6 +1,6 @@
 ﻿namespace XamConverter
 {
-	public class Pounds : ConverterClassSingleton<Pounds>
+	public class Pounds : UnitOfMeasurementSingleton<Pounds>
 	{
 		public Pounds() : base(UnitOfMeasurement.Mass)
 		{

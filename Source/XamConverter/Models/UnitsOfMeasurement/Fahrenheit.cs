@@ -1,6 +1,6 @@
 ﻿namespace XamConverter
 {
-	public class Fahrenheit : ConverterClassSingleton<Fahrenheit>
+	public class Fahrenheit : UnitOfMeasurementSingleton<Fahrenheit>
 	{
 		public Fahrenheit() : base(UnitOfMeasurement.Temperature)
 		{

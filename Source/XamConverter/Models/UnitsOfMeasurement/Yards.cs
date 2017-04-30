@@ -1,6 +1,6 @@
 ﻿namespace XamConverter
 {
-	public class Yards : ConverterClassSingleton<Yards>
+	public class Yards : UnitOfMeasurementSingleton<Yards>
 	{
 		public Yards() : base(UnitOfMeasurement.Length)
 		{

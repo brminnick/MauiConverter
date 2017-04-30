@@ -1,6 +1,6 @@
 ﻿namespace XamConverter
 {
-	public class Kilograms : ConverterClassSingleton<Kilograms>
+	public class Kilograms : UnitOfMeasurementSingleton<Kilograms>
 	{
 		public Kilograms() : base(UnitOfMeasurement.Mass)
 		{

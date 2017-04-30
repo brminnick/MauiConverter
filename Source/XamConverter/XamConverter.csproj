@@ -30,7 +30,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Base\UnitOfMeasurementModel.cs" />
-    <Compile Include="Models\Base\ConverterClassSingleton.cs" />
+    <Compile Include="Models\Base\UnitOfMeasurementSingleton.cs" />
     <Compile Include="Pages\ConversionPage.cs" />
     <Compile Include="Pages\Base\BaseContentPage.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace XamConverter
 {
-	public class Meters : ConverterClassSingleton<Meters>
+	public class Meters : UnitOfMeasurementSingleton<Meters>
 	{
 		public Meters() : base(UnitOfMeasurement.Length)
 		{
