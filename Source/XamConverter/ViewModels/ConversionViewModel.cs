@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -44,6 +45,10 @@ namespace XamConverter
         }
         #endregion
 
+        #region Events
+        public event EventHandler<string> ConversionError;
+        #endregion
+
         #region Properties
         public Command ConvertButtonCommand => _convertButtonCommand ??
             (_convertButtonCommand = new Command(ExecuteConvertButtonCommand));
@@ -84,7 +89,7 @@ namespace XamConverter
         public string NumberToConvertEntryText
         {
             get => _numberToConvertEntryText;
-            set => SetProperty(ref _numberToConvertEntryText, value, ExecuteConvertButtonCommand);
+            set => SetProperty(ref _numberToConvertEntryText, value, ExecuteNumberToConvertEntryTextChanged);
         }
 
         public string ConvertedNumberLabelText
@@ -167,6 +172,34 @@ namespace XamConverter
 
         void ExecuteConvertButtonCommand()
         {
+            var isOriginalUnitsPickerSelectedItemNull = OriginalUnitsPickerSelectedItem == null;
+            var isConvertedUnitsPickerSelectedItemNull = ConvertedUnitsPickerSelectedItem == null;
+            var isNumberToConvertEntryTextInvalid = !double.TryParse(NumberToConvertEntryText, out double result);
+
+            if (isOriginalUnitsPickerSelectedItemNull || isConvertedUnitsPickerSelectedItemNull || isNumberToConvertEntryTextInvalid)
+            {
+                var errorStringBuilder = new StringBuilder();
+
+                if (isOriginalUnitsPickerSelectedItemNull)
+                    errorStringBuilder.AppendLine("Original Unit Not Selected");
+                if (isConvertedUnitsPickerSelectedItemNull)
+                    errorStringBuilder.AppendLine("Converted Unit Not Selected");
+                if (isNumberToConvertEntryTextInvalid)
+                    errorStringBuilder.AppendLine("Number to Convert Invalid");
+
+                errorStringBuilder.Remove(errorStringBuilder.Length - 1, 1);
+
+                OnConversionError(errorStringBuilder.ToString());
+            }
+            else
+            {
+                ConvertUnits();
+            }
+
+        }
+
+        void ExecuteNumberToConvertEntryTextChanged()
+        {
             if (OriginalUnitsPickerSelectedItem != null && ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
                 ConvertUnits();
         }
@@ -191,6 +224,8 @@ namespace XamConverter
                 ConvertedNumberLabelText = string.Empty;
             }
         }
+
+        void OnConversionError(string message) => ConversionError?.Invoke(this, message);
         #endregion
     }
 }

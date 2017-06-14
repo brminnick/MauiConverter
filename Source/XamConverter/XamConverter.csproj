@@ -45,6 +45,7 @@
     <Compile Include="Models\UnitsOfMeasurement\Yards.cs" />
     <Compile Include="Models\UnitsOfMeasurement\Fahrenheit.cs" />
     <Compile Include="Models\UnitsOfMeasurement\Celsius.cs" />
+    <Compile Include="Views\BounceButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
