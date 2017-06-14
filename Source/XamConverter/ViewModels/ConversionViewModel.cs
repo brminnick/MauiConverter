@@ -84,12 +84,7 @@ namespace XamConverter
         public string NumberToConvertEntryText
         {
             get => _numberToConvertEntryText;
-            set
-            {
-                SetProperty(ref _numberToConvertEntryText, value);
-
-                ExecuteConvertButtonCommand();
-            }
+            set => SetProperty(ref _numberToConvertEntryText, value, ExecuteConvertButtonCommand);
         }
 
         public string ConvertedNumberLabelText
