@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Pounds : UnitOfMeasurementSingleton<Pounds>
+	public class Pounds : UnitOfMeasurementModel
 	{
-		public Pounds() : base(UnitOfMeasurement.Mass)
+        static Pounds _instance;
+
+		Pounds() : base(UnitOfMeasurement.Mass)
 		{
 		}
+
+        public static Pounds Instance => _instance ?? (_instance = new Pounds());
 
 		public override double ConvertFromBaseUnits(double unitsInGrams)
 		{

@@ -6,195 +6,196 @@ using Xamarin.Forms;
 
 namespace XamConverter
 {
-	public class ConversionViewModel : BaseViewModel
-	{
-		#region Constant Fields
-		readonly Dictionary<string, UnitOfMeasurementModel> _unitOfMeasurementDictionary = new Dictionary<string, UnitOfMeasurementModel>
-		{
-			{ "Miles", Miles.Instance },
-			{ "Meters", Meters.Instance },
-			{ "Yards", Yards.Instance },
-			{ "Pounds", Pounds.Instance },
-			{ "Ounces", Ounces.Instance },
-			{ "Kilograms", Kilograms.Instance },
-			{ "Fahrenheit", Fahrenheit.Instance },
-			{ "Celsius", Celsius.Instance }
-		};
-		#endregion
+    public class ConversionViewModel : BaseViewModel
+    {
+        #region Constant Fields
+        readonly Dictionary<string, UnitOfMeasurementModel> _unitOfMeasurementDictionary = new Dictionary<string, UnitOfMeasurementModel>
+        {
+            { "Miles", Miles.Instance },
+            { "Meters", Meters.Instance },
+            { "Yards", Yards.Instance },
+            { "Pounds", Pounds.Instance },
+            { "Ounces", Ounces.Instance },
+            { "Kilograms", Kilograms.Instance },
+            { "Fahrenheit", Fahrenheit.Instance },
+            { "Celsius", Celsius.Instance }
+        };
+        #endregion
 
-		#region Fields
-		int _unitTypePickerSelectedIndex;
-		string _numberToConvertEntryText, _convertedNumberLabelText, _originalUnitsPickerSelectedItem,
-			_convertedUnitsPickerSelectedItem, _titleText;
-		Command _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
-			_convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
-		List<string> _originalUnitsPickerList, _convertedUnitsPickerList, _unitTypePickerList;
-		#endregion
+        #region Fields
+        int _unitTypePickerSelectedIndex;
+        string _numberToConvertEntryText, _convertedNumberLabelText, _originalUnitsPickerSelectedItem,
+            _convertedUnitsPickerSelectedItem, _titleText;
+        Command _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
+            _convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
+        List<string> _originalUnitsPickerList, _convertedUnitsPickerList, _unitTypePickerList;
+        #endregion
 
-		#region Properties
-		public Command ConvertButtonCommand => _convertButtonCommand ??
-			(_convertButtonCommand = new Command(ExecuteConvertButtonCommand));
+        #region Constructors
+        public ConversionViewModel()
+        {
+            NumberToConvertEntryText = 0.ToString();
 
-		public Command OriginalUnitsPickerSelectedIndexChangedCommand => _originalUnitsPickerSelectedIndexChangedCommand ??
-			(_originalUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteOriginalUnitsPickerSelectedIndexChangedCommand));
+            var initialUnitOfMeasurement = (UnitOfMeasurement)0;
 
-		public Command ConvertedUnitsPickerSelectedIndexChangedCommand => _convertedUnitsPickerSelectedIndexChangedCommand ??
-			(_convertedUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteConvertedUnitsPickerSelectedIndexChangedCommand));
+            PopulateUnitTypePickerList();
+            PopulateUnitsPickerLists(initialUnitOfMeasurement);
+            SetTitleText(initialUnitOfMeasurement);
+        }
+        #endregion
 
-		public Command UnitTypePickerSelectedIndexChangedCommand => _unitTypePickerSelectedIndexChangedCommand ??
-		(_unitTypePickerSelectedIndexChangedCommand = new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand));
+        #region Properties
+        public Command ConvertButtonCommand => _convertButtonCommand ??
+            (_convertButtonCommand = new Command(ExecuteConvertButtonCommand));
 
-		public List<string> UnitTypePickerList
-		{
-			get { return _unitTypePickerList; }
-			set { SetProperty(ref _unitTypePickerList, value); }
-		}
+        public Command OriginalUnitsPickerSelectedIndexChangedCommand => _originalUnitsPickerSelectedIndexChangedCommand ??
+            (_originalUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteOriginalUnitsPickerSelectedIndexChangedCommand));
 
-		public List<string> OriginalUnitsPickerList
-		{
-			get { return _originalUnitsPickerList; }
-			set { SetProperty(ref _originalUnitsPickerList, value); }
-		}
+        public Command ConvertedUnitsPickerSelectedIndexChangedCommand => _convertedUnitsPickerSelectedIndexChangedCommand ??
+            (_convertedUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteConvertedUnitsPickerSelectedIndexChangedCommand));
 
-		public string TitleText
-		{
-			get { return _titleText; }
-			set { SetProperty(ref _titleText, value); }
-		}
+        public Command UnitTypePickerSelectedIndexChangedCommand => _unitTypePickerSelectedIndexChangedCommand ??
+            (_unitTypePickerSelectedIndexChangedCommand = new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand));
 
-		public List<string> ConvertedUnitsPickerList
-		{
-			get { return _convertedUnitsPickerList; }
-			set { SetProperty(ref _convertedUnitsPickerList, value); }
-		}
+        public List<string> UnitTypePickerList
+        {
+            get => _unitTypePickerList;
+            set => SetProperty(ref _unitTypePickerList, value);
+        }
 
-		public string NumberToConvertEntryText
-		{
-			get { return _numberToConvertEntryText; }
-			set
-			{
-				SetProperty(ref _numberToConvertEntryText, value);
+        public List<string> OriginalUnitsPickerList
+        {
+            get => _originalUnitsPickerList;
+            set => SetProperty(ref _originalUnitsPickerList, value);
+        }
 
-				ExecuteConvertButtonCommand();
-			}
-		}
+        public string TitleText
+        {
+            get => _titleText;
+            set => SetProperty(ref _titleText, value);
+        }
 
-		public string ConvertedNumberLabelText
-		{
-			get { return _convertedNumberLabelText; }
-			set { SetProperty(ref _convertedNumberLabelText, value); }
-		}
+        public List<string> ConvertedUnitsPickerList
+        {
+            get => _convertedUnitsPickerList;
+            set => SetProperty(ref _convertedUnitsPickerList, value);
+        }
 
-		public string OriginalUnitsPickerSelectedItem
-		{
-			get { return _originalUnitsPickerSelectedItem; }
-			set { SetProperty(ref _originalUnitsPickerSelectedItem, value); }
-		}
+        public string NumberToConvertEntryText
+        {
+            get => _numberToConvertEntryText;
+            set
+            {
+                SetProperty(ref _numberToConvertEntryText, value);
 
-		public int UnitTypePickerSelectedIndex
-		{
-			get { return _unitTypePickerSelectedIndex; }
-			set { SetProperty(ref _unitTypePickerSelectedIndex, value); }
-		}
+                ExecuteConvertButtonCommand();
+            }
+        }
 
-		public string ConvertedUnitsPickerSelectedItem
-		{
-			get { return _convertedUnitsPickerSelectedItem; }
-			set { SetProperty(ref _convertedUnitsPickerSelectedItem, value); }
-		}
-		#endregion
+        public string ConvertedNumberLabelText
+        {
+            get => _convertedNumberLabelText;
+            set => SetProperty(ref _convertedNumberLabelText, value);
+        }
 
-		#region Constructors
-		public ConversionViewModel()
-		{
-			NumberToConvertEntryText = 0.ToString();
+        public string OriginalUnitsPickerSelectedItem
+        {
+            get => _originalUnitsPickerSelectedItem;
+            set => SetProperty(ref _originalUnitsPickerSelectedItem, value);
+        }
 
-			var initialUnitOfMeasurement = (UnitOfMeasurement)0;
+        public int UnitTypePickerSelectedIndex
+        {
+            get => _unitTypePickerSelectedIndex;
+            set => SetProperty(ref _unitTypePickerSelectedIndex, value);
+        }
 
-			PopulateUnitTypePickerList();
-			PopulateUnitsPickerLists(initialUnitOfMeasurement);
-			SetTitleText(initialUnitOfMeasurement);
-		}
+        public string ConvertedUnitsPickerSelectedItem
+        {
+            get => _convertedUnitsPickerSelectedItem;
+            set => SetProperty(ref _convertedUnitsPickerSelectedItem, value);
+        }
+        #endregion
 
-		#endregion
+        #region Methods
+        void PopulateUnitsPickerLists(UnitOfMeasurement unitOfMeasurement)
+        {
+            var originalUnitsPickerList = new List<string>();
+            var convertedUnitsPickerList = new List<string>();
 
-		#region Methods
-		void PopulateUnitsPickerLists(UnitOfMeasurement unitOfMeasurement)
-		{
-			var originalUnitsPickerList = new List<string>();
-			var convertedUnitsPickerList = new List<string>();
+            var listOfSelectedUnits = _unitOfMeasurementDictionary.Where(x => x.Value.MeasurementType.Equals(unitOfMeasurement));
 
-			var listOfSelectedUnits = _unitOfMeasurementDictionary.Where(x => x.Value.MeasurementType.Equals(unitOfMeasurement));
+            foreach (var item in listOfSelectedUnits)
+            {
+                originalUnitsPickerList.Add(item.Key);
+                convertedUnitsPickerList.Add(item.Key);
+            }
 
-			foreach (var item in listOfSelectedUnits)
-			{
-				originalUnitsPickerList.Add(item.Key);
-				convertedUnitsPickerList.Add(item.Key);
-			}
+            OriginalUnitsPickerList = originalUnitsPickerList;
+            ConvertedUnitsPickerList = convertedUnitsPickerList;
+        }
 
-			OriginalUnitsPickerList = originalUnitsPickerList;
-			ConvertedUnitsPickerList = convertedUnitsPickerList;
-		}
+        void PopulateUnitTypePickerList()
+        {
+            var unitTypeLPickerList = new List<string>();
 
-		void PopulateUnitTypePickerList()
-		{
-			var unitTypeLPickerList = new List<string>();
+            foreach (UnitOfMeasurement item in Enum.GetValues(typeof(UnitOfMeasurement)))
+                unitTypeLPickerList.Add(item.ToString());
 
-			foreach (UnitOfMeasurement item in Enum.GetValues(typeof(UnitOfMeasurement)))
-				unitTypeLPickerList.Add(item.ToString());
+            UnitTypePickerList = unitTypeLPickerList;
+        }
 
-			UnitTypePickerList = unitTypeLPickerList;
-		}
+        void ExecuteOriginalUnitsPickerSelectedIndexChangedCommand()
+        {
+            if (ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
+                ConvertUnits();
+        }
 
-		void ExecuteOriginalUnitsPickerSelectedIndexChangedCommand()
-		{
-			if (ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
-				ConvertUnits();
-		}
+        void ExecuteConvertedUnitsPickerSelectedIndexChangedCommand()
+        {
+            if (OriginalUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
+                ConvertUnits();
+        }
 
-		void ExecuteConvertedUnitsPickerSelectedIndexChangedCommand()
-		{
-			if (OriginalUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
-				ConvertUnits();
-		}
+        void ExecuteUnitTypePickerSelectedIndexChangedCommand()
+        {
+            var selectedUnitOfMeasurement = (UnitOfMeasurement)UnitTypePickerSelectedIndex;
+            PopulateUnitsPickerLists(selectedUnitOfMeasurement);
 
-		void ExecuteUnitTypePickerSelectedIndexChangedCommand()
-		{
-			var selectedUnitOfMeasurement = (UnitOfMeasurement)UnitTypePickerSelectedIndex;
-			PopulateUnitsPickerLists(selectedUnitOfMeasurement);
+            SetTitleText(selectedUnitOfMeasurement);
+        }
 
-			SetTitleText(selectedUnitOfMeasurement);
-		}
+        void SetTitleText(UnitOfMeasurement unitOfMeasurement)
+        {
+            TitleText = $"Convert {unitOfMeasurement}";
+        }
 
-		void SetTitleText(UnitOfMeasurement unitOfMeasurement)
-		{
-			TitleText = $"Convert {unitOfMeasurement}";
-		}
+        void ExecuteConvertButtonCommand()
+        {
+            if (OriginalUnitsPickerSelectedItem != null && ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
+                ConvertUnits();
+        }
 
-		void ExecuteConvertButtonCommand()
-		{
-			if (OriginalUnitsPickerSelectedItem != null && ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
-				ConvertUnits();
-		}
+        void ConvertUnits()
+        {
+            try
+            {
+                var numberToConvert = double.Parse(NumberToConvertEntryText);
 
-		void ConvertUnits()
-		{
-			double numberToConvert;
-			double.TryParse(NumberToConvertEntryText, out numberToConvert);
+                var firstItemSelectedType = _unitOfMeasurementDictionary.FirstOrDefault(x => x.Key.Equals(OriginalUnitsPickerSelectedItem)).Value;
+                var secondItemSelectedType = _unitOfMeasurementDictionary.FirstOrDefault(x => x.Key.Equals(ConvertedUnitsPickerSelectedItem)).Value;
 
-			if (numberToConvert == default(double))
-				numberToConvert = 0;
+                var inputAsBaseUnits = firstItemSelectedType.ConvertToBaseUnits(numberToConvert);
 
-			var firstItemSelectedType = _unitOfMeasurementDictionary.FirstOrDefault(x => x.Key.Equals(OriginalUnitsPickerSelectedItem)).Value;
-			var secondItemSelectedType = _unitOfMeasurementDictionary.FirstOrDefault(x => x.Key.Equals(ConvertedUnitsPickerSelectedItem)).Value;
+                var inputAsConvertedUnits = secondItemSelectedType.ConvertFromBaseUnits(inputAsBaseUnits);
 
-			var inputAsBaseUnits = firstItemSelectedType.ConvertToBaseUnits(numberToConvert);
-
-			var inputAsConvertedUnits = secondItemSelectedType.ConvertFromBaseUnits(inputAsBaseUnits);
-
-			ConvertedNumberLabelText = $"{NumberToConvertEntryText} {OriginalUnitsPickerSelectedItem} = {inputAsConvertedUnits.ToString("N")} {ConvertedUnitsPickerSelectedItem}";
-
-		}
-		#endregion
-	}
+                ConvertedNumberLabelText = $"{NumberToConvertEntryText} {OriginalUnitsPickerSelectedItem} = {inputAsConvertedUnits.ToString("N")} {ConvertedUnitsPickerSelectedItem}";
+            }
+            catch (Exception e)
+            {
+                ConvertedNumberLabelText = string.Empty;
+            }
+        }
+        #endregion
+    }
 }

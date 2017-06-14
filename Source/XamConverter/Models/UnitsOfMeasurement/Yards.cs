@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Yards : UnitOfMeasurementSingleton<Yards>
+	public class Yards : UnitOfMeasurementModel
 	{
-		public Yards() : base(UnitOfMeasurement.Length)
+        static Yards _instance;
+
+		Yards() : base(UnitOfMeasurement.Length)
 		{
 		}
+
+        public static Yards Instance => _instance ?? (_instance = new Yards());
 
 		public override double ConvertFromBaseUnits(double unitInCentimeters)
 		{

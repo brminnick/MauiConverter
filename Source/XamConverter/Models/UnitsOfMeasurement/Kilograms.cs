@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Kilograms : UnitOfMeasurementSingleton<Kilograms>
+    public class Kilograms : UnitOfMeasurementModel
 	{
-		public Kilograms() : base(UnitOfMeasurement.Mass)
+        static Kilograms _instance;
+
+		Kilograms() : base(UnitOfMeasurement.Mass)
 		{
 		}
+
+        public static Kilograms Instance => _instance ?? (_instance = new Kilograms());
 
 		public override double ConvertFromBaseUnits(double numberInGrams)
 		{

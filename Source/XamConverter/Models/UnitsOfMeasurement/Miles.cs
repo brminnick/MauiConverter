@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Miles : UnitOfMeasurementSingleton<Miles>
+	public class Miles : UnitOfMeasurementModel
 	{
-		public Miles() : base(UnitOfMeasurement.Length)
+        static Miles _instance;
+
+		Miles() : base(UnitOfMeasurement.Length)
 		{
 		}
+
+        public static Miles Instance => _instance ?? (_instance = new Miles());
 
 		public override double ConvertFromBaseUnits(double valueInCentimeters)
 		{

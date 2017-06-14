@@ -2,10 +2,8 @@ namespace XamConverter
 {
 	public abstract class UnitOfMeasurementModel
 	{
-		protected UnitOfMeasurementModel(UnitOfMeasurement measurementType)
-		{
+		protected UnitOfMeasurementModel(UnitOfMeasurement measurementType) =>
 			MeasurementType = measurementType;
-		}
 
 		public UnitOfMeasurement MeasurementType { get; }
 

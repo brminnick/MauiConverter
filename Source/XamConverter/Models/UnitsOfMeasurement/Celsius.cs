@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Celsius : UnitOfMeasurementSingleton<Celsius>
+	public class Celsius : UnitOfMeasurementModel
 	{
-		public Celsius() : base(UnitOfMeasurement.Temperature)
+        static Celsius _instance;
+
+		Celsius() : base(UnitOfMeasurement.Temperature)
 		{
 		}
+
+        public static Celsius Instance => _instance ?? (_instance = new Celsius());
 
 		public override double ConvertFromBaseUnits(double unitsInCelsius)
 		{

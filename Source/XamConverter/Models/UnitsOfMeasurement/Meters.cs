@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Meters : UnitOfMeasurementSingleton<Meters>
+	public class Meters : UnitOfMeasurementModel
 	{
-		public Meters() : base(UnitOfMeasurement.Length)
+        static Meters _instance;
+
+		Meters() : base(UnitOfMeasurement.Length)
 		{
 		}
+
+        public static Meters Instance => _instance ?? (_instance = new Meters());
 
 		public override double ConvertFromBaseUnits(double valueInMeters)
 		{

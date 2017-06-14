@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-	public class Fahrenheit : UnitOfMeasurementSingleton<Fahrenheit>
+	public class Fahrenheit : UnitOfMeasurementModel
 	{
-		public Fahrenheit() : base(UnitOfMeasurement.Temperature)
+        static Fahrenheit _instance;
+
+		Fahrenheit() : base(UnitOfMeasurement.Temperature)
 		{
 		}
+
+        public static Fahrenheit Instance => _instance ?? (_instance = new Fahrenheit());
 
 		public override double ConvertFromBaseUnits(double unitsInCelsius)
 		{
