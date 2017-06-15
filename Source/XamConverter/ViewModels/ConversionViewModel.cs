@@ -174,7 +174,7 @@ namespace XamConverter
         {
             var isOriginalUnitsPickerSelectedItemNull = OriginalUnitsPickerSelectedItem == null;
             var isConvertedUnitsPickerSelectedItemNull = ConvertedUnitsPickerSelectedItem == null;
-            var isNumberToConvertEntryTextInvalid = !double.TryParse(NumberToConvertEntryText, out double result);
+            var isNumberToConvertEntryTextInvalid = !double.TryParse(NumberToConvertEntryText, out _);
 
             if (isOriginalUnitsPickerSelectedItemNull || isConvertedUnitsPickerSelectedItemNull || isNumberToConvertEntryTextInvalid)
             {
