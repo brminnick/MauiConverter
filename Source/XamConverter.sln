@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter.iOS", "iOS\Xam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter.Droid", "Droid\XamConverter.Droid.csproj", "{86840B8B-8A6A-4172-B7FD-6B409AB27E2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter", "XamConverter\XamConverter.csproj", "{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter", "XamConverter\XamConverter.csproj", "{F973919D-1EBC-43EA-9472-F5A7058598D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,27 +41,23 @@ Global
 		{86840B8B-8A6A-4172-B7FD-6B409AB27E2A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{86840B8B-8A6A-4172-B7FD-6B409AB27E2A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{86840B8B-8A6A-4172-B7FD-6B409AB27E2A}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Release|iPhone.Build.0 = Release|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{7B2B7C9B-CFA9-4B08-A138-6C40C4EC027A}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Release|iPhone.Build.0 = Release|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F973919D-1EBC-43EA-9472-F5A7058598D5}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = None
-		$1.ResourceNamePolicy = FileFormatDefault
 		$0.StandardHeader = $2
-		$2.Text = 
-		$2.IncludeInNewFiles = True
 		$0.NameConventionPolicy = $3
 		$3.Rules = $4
 		$4.NamingRule = $5
@@ -187,7 +183,6 @@ Global
 		$24.IncludeInstanceMembers = True
 		$24.IncludeStaticEntities = True
 		$0.VersionControlPolicy = $26
-		$26.inheritsSet = Mono
 		outputpath = build/bin
 	EndGlobalSection
 EndGlobal
