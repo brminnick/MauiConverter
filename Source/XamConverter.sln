@@ -1,9 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter.iOS", "iOS\XamConverter.iOS.csproj", "{03A99928-3527-43BC-88A5-E1B3F49D51B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter.iOS", "XamConverter.iOS\XamConverter.iOS.csproj", "{03A99928-3527-43BC-88A5-E1B3F49D51B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter.Droid", "Droid\XamConverter.Droid.csproj", "{86840B8B-8A6A-4172-B7FD-6B409AB27E2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter.Droid", "XamConverter.Droid\XamConverter.Droid.csproj", "{86840B8B-8A6A-4172-B7FD-6B409AB27E2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamConverter", "XamConverter\XamConverter.csproj", "{F973919D-1EBC-43EA-9472-F5A7058598D5}"
 EndProject

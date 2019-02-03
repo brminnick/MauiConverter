@@ -1,15 +1,17 @@
 using System;
-using System.Text;
-using System.Linq;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
+using AsyncAwaitBestPractices;
 
 namespace XamConverter
 {
-	public class ConversionViewModel : BaseViewModel
+    public class ConversionViewModel : BaseViewModel
 	{
-		#region Constant Fields
+        #region Constant Fields
+        readonly WeakEventManager<string> _conversionErrorEventManager = new WeakEventManager<string>();
 		readonly Dictionary<string, UnitOfMeasurementModel> _unitOfMeasurementDictionary = new Dictionary<string, UnitOfMeasurementModel>
 		{
 			{ "Miles", Miles.Instance },
@@ -27,7 +29,7 @@ namespace XamConverter
 		int _unitTypePickerSelectedIndex;
 		string _numberToConvertEntryText, _convertedNumberLabelText, _originalUnitsPickerSelectedItem,
 			_convertedUnitsPickerSelectedItem, _titleText;
-		Command _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
+		ICommand _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
 			_convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
 		List<string> _originalUnitsPickerList, _convertedUnitsPickerList, _unitTypePickerList;
 		#endregion
@@ -46,20 +48,24 @@ namespace XamConverter
 		#endregion
 
 		#region Events
-		public event EventHandler<string> ConversionError;
-		#endregion
+		public event EventHandler<string> ConversionError
+        {
+            add => _conversionErrorEventManager.AddEventHandler(value);
+            remove => _conversionErrorEventManager.RemoveEventHandler(value);
+        }
+        #endregion
 
-		#region Properties
-		public Command ConvertButtonCommand => _convertButtonCommand ??
+        #region Properties
+        public ICommand ConvertButtonCommand => _convertButtonCommand ??
 			(_convertButtonCommand = new Command(ExecuteConvertButtonCommand));
 
-		public Command OriginalUnitsPickerSelectedIndexChangedCommand => _originalUnitsPickerSelectedIndexChangedCommand ??
+		public ICommand OriginalUnitsPickerSelectedIndexChangedCommand => _originalUnitsPickerSelectedIndexChangedCommand ??
 			(_originalUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteOriginalUnitsPickerSelectedIndexChangedCommand));
 
-		public Command ConvertedUnitsPickerSelectedIndexChangedCommand => _convertedUnitsPickerSelectedIndexChangedCommand ??
+		public ICommand ConvertedUnitsPickerSelectedIndexChangedCommand => _convertedUnitsPickerSelectedIndexChangedCommand ??
 			(_convertedUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteConvertedUnitsPickerSelectedIndexChangedCommand));
 
-		public Command UnitTypePickerSelectedIndexChangedCommand => _unitTypePickerSelectedIndexChangedCommand ??
+		public ICommand UnitTypePickerSelectedIndexChangedCommand => _unitTypePickerSelectedIndexChangedCommand ??
 			(_unitTypePickerSelectedIndexChangedCommand = new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand));
 
 		public List<string> UnitTypePickerList
@@ -221,7 +227,7 @@ namespace XamConverter
 			}
 		}
 
-		void OnConversionError(string message) => ConversionError?.Invoke(this, message);
+		void OnConversionError(string message) => _conversionErrorEventManager?.HandleEvent(this, message, nameof(ConversionError));
 		#endregion
 	}
 }

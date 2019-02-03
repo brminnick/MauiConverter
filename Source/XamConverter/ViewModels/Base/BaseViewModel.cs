@@ -3,11 +3,19 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
+using AsyncAwaitBestPractices;
+
 namespace XamConverter
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        readonly WeakEventManager _notifyPropertyChangedEventManager = new WeakEventManager();
+
+        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+        {
+            add => _notifyPropertyChangedEventManager.AddEventHandler(value);
+            remove => _notifyPropertyChangedEventManager.RemoveEventHandler(value);
+        }
 
         protected void SetProperty<T>(ref T backingStore, T value, Action onChanged = null, [CallerMemberName] string propertyName = "")
         {
@@ -22,6 +30,6 @@ namespace XamConverter
         }
 
         void OnPropertyChanged([CallerMemberName] string name = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            _notifyPropertyChangedEventManager?.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }
