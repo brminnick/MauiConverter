@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -30,6 +30,6 @@ namespace XamConverter
         }
 
         void OnPropertyChanged([CallerMemberName] string name = "") =>
-            _notifyPropertyChangedEventManager?.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
+            _notifyPropertyChangedEventManager.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }
