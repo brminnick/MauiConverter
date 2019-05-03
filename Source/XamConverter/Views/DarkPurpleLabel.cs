@@ -2,7 +2,6 @@
 
 namespace XamConverter
 {
-	#region Constructors
 	public class DarkPurpleLabel : Label
 	{
 		public DarkPurpleLabel()
@@ -11,5 +10,4 @@ namespace XamConverter
 			VerticalTextAlignment = TextAlignment.Center;
 		}
 	}
-	#endregion
 }

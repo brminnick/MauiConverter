@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
 using AsyncAwaitBestPractices;
+using Xamarin.Forms;
 
 namespace XamConverter
 {
@@ -153,15 +153,19 @@ namespace XamConverter
 
 		void ExecuteOriginalUnitsPickerSelectedIndexChangedCommand()
 		{
-			if (ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
-				ConvertUnits();
-		}
+            if (ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
+            {
+                ConvertUnits();
+            }
+        }
 
 		void ExecuteConvertedUnitsPickerSelectedIndexChangedCommand()
 		{
-			if (OriginalUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
-				ConvertUnits();
-		}
+            if (OriginalUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
+            {
+                ConvertUnits();
+            }
+        }
 
 		void ExecuteUnitTypePickerSelectedIndexChangedCommand()
 		{
@@ -202,9 +206,11 @@ namespace XamConverter
 
 		void ExecuteNumberToConvertEntryTextChanged()
 		{
-			if (OriginalUnitsPickerSelectedItem != null && ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
-				ConvertUnits();
-		}
+            if (OriginalUnitsPickerSelectedItem != null && ConvertedUnitsPickerSelectedItem != null && NumberToConvertEntryText != null)
+            {
+                ConvertUnits();
+            }
+        }
 
 		void ConvertUnits()
 		{
@@ -221,13 +227,13 @@ namespace XamConverter
 
 				ConvertedNumberLabelText = $"{NumberToConvertEntryText} {OriginalUnitsPickerSelectedItem} = {inputAsConvertedUnits.ToString("N")} {ConvertedUnitsPickerSelectedItem}";
 			}
-			catch (Exception)
+			catch
 			{
 				ConvertedNumberLabelText = string.Empty;
 			}
 		}
 
-		void OnConversionError(string message) => _conversionErrorEventManager?.HandleEvent(this, message, nameof(ConversionError));
+		void OnConversionError(string message) => _conversionErrorEventManager.HandleEvent(this, message, nameof(ConversionError));
 		#endregion
 	}
 }

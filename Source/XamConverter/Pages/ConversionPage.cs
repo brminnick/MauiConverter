@@ -6,12 +6,11 @@ namespace XamConverter
     {
         public ConversionPage()
         {
+            ViewModel.ConversionError += HandleConversionError;
+
             var unitTypeLabel = new DarkPurpleLabel { Text = "Unit Type", TextColor = ColorConstants.DarkestPurple };
 
-            var unitTypePicker = new UnitsPicker
-            {
-                Title = "Unit Type"
-            };
+            var unitTypePicker = new UnitsPicker { Title = "Unit Type" };
             unitTypePicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.UnitTypePickerList));
             unitTypePicker.SetBinding(Picker.SelectedIndexProperty, nameof(ViewModel.UnitTypePickerSelectedIndex));
             unitTypePicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ViewModel.UnitTypePickerSelectedIndexChangedCommand));
@@ -99,21 +98,7 @@ namespace XamConverter
             Content = gridLayout;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            ViewModel.ConversionError += HandleConversionError;
-        }
-
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            ViewModel.ConversionError -= HandleConversionError;
-        }
-
         void HandleConversionError(object sender, string message) =>
-            Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Error", message, "OK"));
+            Device.BeginInvokeOnMainThread(async () => await DisplayAlert("Conversion Error", message, "OK"));
     }
 }

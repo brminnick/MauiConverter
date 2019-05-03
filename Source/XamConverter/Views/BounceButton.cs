@@ -6,21 +6,19 @@ namespace XamConverter
 {
     public class BounceButton : Button
     {
-        public BounceButton() : base() =>
-            Clicked += HandleButtonClick;
-
-        ~BounceButton() => Clicked -= HandleButtonClick;
+        public BounceButton() => Clicked += HandleButtonClick;
 
         void HandleButtonClick(object sender, EventArgs e)
         {
-            var bounceButton = sender as BounceButton;
-
-            Device.BeginInvokeOnMainThread(async () =>
+            if (sender is BounceButton bounceButton)
             {
-                Unfocus();
-                await bounceButton?.ScaleTo(1.05, 100);
-                await bounceButton?.ScaleTo(1, 100);
-            });
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    Unfocus();
+                    await bounceButton?.ScaleTo(1.05, 100);
+                    await bounceButton?.ScaleTo(1, 100);
+                });
+            }
         }
     }
 }
