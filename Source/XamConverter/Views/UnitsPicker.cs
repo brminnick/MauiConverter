@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace XamConverter
@@ -13,11 +13,11 @@ namespace XamConverter
         }
 
         public static readonly BindableProperty SelectedIndexChangedCommandProperty =
-            BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(Command), typeof(UnitsPicker), null);
+            BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(UnitsPicker), null);
 
-        public Command SelectedIndexChangedCommand
+        public ICommand SelectedIndexChangedCommand
         {
-            get => (Command)GetValue(SelectedIndexChangedCommandProperty);
+            get => (ICommand)GetValue(SelectedIndexChangedCommandProperty);
             set => SetValue(SelectedIndexChangedCommandProperty, value);
         }
 
