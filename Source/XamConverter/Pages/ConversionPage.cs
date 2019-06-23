@@ -8,14 +8,14 @@ namespace XamConverter
         {
             ViewModel.ConversionError += HandleConversionError;
 
-            var unitTypeLabel = new DarkPurpleLabel { Text = "Unit Type", TextColor = ColorConstants.DarkestPurple };
+            var unitTypeLabel = new DarkPurpleLabel { Text = "Unit Type" };
 
             var unitTypePicker = new UnitsPicker { Title = "Unit Type" };
             unitTypePicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.UnitTypePickerList));
             unitTypePicker.SetBinding(Picker.SelectedIndexProperty, nameof(ViewModel.UnitTypePickerSelectedIndex));
             unitTypePicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ViewModel.UnitTypePickerSelectedIndexChangedCommand));
 
-            var numberToConvertLabel = new DarkPurpleLabel { Text = "Number to Convert", TextColor = ColorConstants.DarkestPurple };
+            var numberToConvertLabel = new DarkPurpleLabel { Text = "Number to Convert" };
 
             var numberToConvertEntry = new Entry
             {
@@ -25,14 +25,14 @@ namespace XamConverter
             };
             numberToConvertEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.NumberToConvertEntryText));
 
-            var originalUnitsLabel = new DarkPurpleLabel { Text = "Original Units", TextColor = ColorConstants.DarkestPurple };
+            var originalUnitsLabel = new DarkPurpleLabel { Text = "Original Units" };
 
             var originalUnitsPicker = new UnitsPicker { Title = "Original Units" };
             originalUnitsPicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.OriginalUnitsPickerList));
             originalUnitsPicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.OriginalUnitsPickerSelectedItem));
             originalUnitsPicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ViewModel.OriginalUnitsPickerSelectedIndexChangedCommand));
 
-            var convertedUnitsLabel = new DarkPurpleLabel { Text = "Converted Units", TextColor = ColorConstants.DarkestPurple };
+            var convertedUnitsLabel = new DarkPurpleLabel { Text = "Converted Units" };
 
             var convertedUnitsPicker = new UnitsPicker { Title = "Converted Units" };
             convertedUnitsPicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.ConvertedUnitsPickerList));
