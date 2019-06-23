@@ -16,7 +16,8 @@ namespace XamConverter
 		{
 			{ "Miles", Miles.Instance },
 			{ "Meters", Meters.Instance },
-			{ "Yards", Yards.Instance },
+            { "Kilometers", Kilometers.Instance },
+            { "Yards", Yards.Instance },
 			{ "Pounds", Pounds.Instance },
 			{ "Ounces", Ounces.Instance },
 			{ "Kilograms", Kilograms.Instance },
