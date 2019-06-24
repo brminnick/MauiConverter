@@ -188,12 +188,12 @@ namespace XamConverter
 			{
 				var errorStringBuilder = new StringBuilder();
 
+				if (isNumberToConvertEntryTextInvalid)
+					errorStringBuilder.AppendLine("Number to Convert Invalid");
 				if (isOriginalUnitsPickerSelectedItemNull)
 					errorStringBuilder.AppendLine("Original Unit Not Selected");
 				if (isConvertedUnitsPickerSelectedItemNull)
 					errorStringBuilder.AppendLine("Converted Unit Not Selected");
-				if (isNumberToConvertEntryTextInvalid)
-					errorStringBuilder.AppendLine("Number to Convert Invalid");
 
 				errorStringBuilder.Remove(errorStringBuilder.Length - 1, 1);
 
