@@ -10,7 +10,6 @@ namespace XamConverter
 {
     public class ConversionViewModel : BaseViewModel
 	{
-        #region Constant Fields
         readonly WeakEventManager<string> _conversionErrorEventManager = new WeakEventManager<string>();
 		readonly Dictionary<string, UnitOfMeasurementModel> _unitOfMeasurementDictionary = new Dictionary<string, UnitOfMeasurementModel>
 		{
@@ -24,18 +23,17 @@ namespace XamConverter
 			{ "Fahrenheit", Fahrenheit.Instance },
 			{ "Celsius", Celsius.Instance }
 		};
-		#endregion
 
-		#region Fields
 		int _unitTypePickerSelectedIndex;
-		string _numberToConvertEntryText, _convertedNumberLabelText, _originalUnitsPickerSelectedItem,
-			_convertedUnitsPickerSelectedItem, _titleText;
-		ICommand _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
-			_convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
-		List<string> _originalUnitsPickerList, _convertedUnitsPickerList, _unitTypePickerList;
-		#endregion
 
-		#region Constructors
+        string _numberToConvertEntryText, _convertedNumberLabelText, _originalUnitsPickerSelectedItem,
+			_convertedUnitsPickerSelectedItem, _titleText;
+
+        ICommand _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
+			_convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
+
+        List<string> _originalUnitsPickerList, _convertedUnitsPickerList, _unitTypePickerList;
+
 		public ConversionViewModel()
 		{
 			NumberToConvertEntryText = 0.ToString();
@@ -46,17 +44,13 @@ namespace XamConverter
 			PopulateUnitsPickerLists(initialUnitOfMeasurement);
 			SetTitleText(initialUnitOfMeasurement);
 		}
-		#endregion
 
-		#region Events
 		public event EventHandler<string> ConversionError
         {
             add => _conversionErrorEventManager.AddEventHandler(value);
             remove => _conversionErrorEventManager.RemoveEventHandler(value);
         }
-        #endregion
 
-        #region Properties
         public ICommand ConvertButtonCommand => _convertButtonCommand ??
 			(_convertButtonCommand = new Command(ExecuteConvertButtonCommand));
 
@@ -122,9 +116,7 @@ namespace XamConverter
 			get => _convertedUnitsPickerSelectedItem;
 			set => SetProperty(ref _convertedUnitsPickerSelectedItem, value);
 		}
-		#endregion
 
-		#region Methods
 		void PopulateUnitsPickerLists(UnitOfMeasurement unitOfMeasurement)
 		{
 			var originalUnitsPickerList = new List<string>();
@@ -235,6 +227,5 @@ namespace XamConverter
 		}
 
 		void OnConversionError(string message) => _conversionErrorEventManager.HandleEvent(this, message, nameof(ConversionError));
-		#endregion
 	}
 }
