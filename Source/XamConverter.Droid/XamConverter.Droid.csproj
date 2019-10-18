@@ -58,8 +58,8 @@
         <Reference Include="Mono.Android" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="AsyncAwaitBestPractices" Version="3.1.0-pre2" />
-        <PackageReference Include="Xamarin.Forms" Version="4.2.0.618605-pre2" />
+        <PackageReference Include="AsyncAwaitBestPractices" Version="3.1.0" />
+        <PackageReference Include="Xamarin.Forms" Version="4.3.0.851321-pre3" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
