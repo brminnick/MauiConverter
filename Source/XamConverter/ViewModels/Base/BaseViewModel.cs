@@ -7,7 +7,7 @@ using AsyncAwaitBestPractices;
 
 namespace XamConverter
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    class BaseViewModel : INotifyPropertyChanged
     {
         readonly WeakEventManager _notifyPropertyChangedEventManager = new WeakEventManager();
 
@@ -17,7 +17,7 @@ namespace XamConverter
             remove => _notifyPropertyChangedEventManager.RemoveEventHandler(value);
         }
 
-        protected void SetProperty<T>(ref T backingStore, T value, Action onChanged = null, [CallerMemberName] string propertyName = "")
+        protected void SetProperty<T>(ref T backingStore, T value, Action? onChanged = null, [CallerMemberName] string propertyName = "")
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return;

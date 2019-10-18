@@ -1,11 +1,11 @@
 ﻿using System;
+using Xamarin.Essentials;
 
 namespace XamConverter
 {
-    public class Miles : UnitOfMeasurementModel
+    class Miles : UnitOfMeasurementModel
     {
-        static readonly Lazy<Miles> _instanceHolder = 
-            new Lazy<Miles>(() => new Miles());
+        static readonly Lazy<Miles> _instanceHolder = new Lazy<Miles>(() => new Miles());
 
         Miles() : base(UnitOfMeasurement.Length)
         {
@@ -13,14 +13,8 @@ namespace XamConverter
 
         public static Miles Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double valueInCentimeters)
-        {
-            return valueInCentimeters / 160934;
-        }
+        public override double ConvertFromBaseUnits(double valueInMeters) => UnitConverters.KilometersToMiles(valueInMeters / 1000);
 
-        public override double ConvertToBaseUnits(double valueInMilies)
-        {
-            return valueInMilies * 160934;
-        }
+        public override double ConvertToBaseUnits(double valueInMilies) => UnitConverters.MilesToKilometers(valueInMilies) * 1000;
     }
 }

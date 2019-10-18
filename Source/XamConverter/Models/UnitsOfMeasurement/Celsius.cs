@@ -1,11 +1,11 @@
 ﻿using System;
+using Xamarin.Essentials;
 
 namespace XamConverter
 {
-    public class Celsius : UnitOfMeasurementModel
+    class Celsius : UnitOfMeasurementModel
     {
-        static readonly Lazy<Celsius> _instanceHolder = 
-            new Lazy<Celsius>(() => new Celsius());
+        static readonly Lazy<Celsius> _instanceHolder = new Lazy<Celsius>(() => new Celsius());
 
         Celsius() : base(UnitOfMeasurement.Temperature)
         {
@@ -13,14 +13,10 @@ namespace XamConverter
 
         public static Celsius Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double unitsInCelsius)
-        {
-            return unitsInCelsius;
-        }
+        public override double ConvertFromBaseUnits(double unitsInKelvin) =>
+            UnitConverters.KelvinToCelsius(unitsInKelvin);
 
-        public override double ConvertToBaseUnits(double unitsInCelsius)
-        {
-            return unitsInCelsius;
-        }
+        public override double ConvertToBaseUnits(double unitsInCelsius) =>
+            UnitConverters.CelsiusToKelvin(unitsInCelsius);
     }
 }

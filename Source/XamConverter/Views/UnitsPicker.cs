@@ -8,6 +8,7 @@ namespace XamConverter
     {
         public UnitsPicker()
         {
+            TextColor = Color.Black;
             BackgroundColor = ColorConstants.LightestPurple;
             SelectedIndexChanged += HandleSelectedIndexChanged;
         }
@@ -15,9 +16,9 @@ namespace XamConverter
         public static readonly BindableProperty SelectedIndexChangedCommandProperty =
             BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(UnitsPicker), null);
 
-        public ICommand SelectedIndexChangedCommand
+        public ICommand? SelectedIndexChangedCommand
         {
-            get => (ICommand)GetValue(SelectedIndexChangedCommandProperty);
+            get => (ICommand?)GetValue(SelectedIndexChangedCommandProperty);
             set => SetValue(SelectedIndexChangedCommandProperty, value);
         }
 

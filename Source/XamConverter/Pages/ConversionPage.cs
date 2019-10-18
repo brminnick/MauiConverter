@@ -2,7 +2,7 @@
 
 namespace XamConverter
 {
-    public class ConversionPage : BaseContentPage<ConversionViewModel>
+    class ConversionPage : BaseContentPage<ConversionViewModel>
     {
         public ConversionPage()
         {
@@ -11,33 +11,34 @@ namespace XamConverter
             var unitTypeLabel = new DarkPurpleLabel { Text = "Unit Type" };
 
             var unitTypePicker = new UnitsPicker { Title = "Unit Type" };
-            unitTypePicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.UnitTypePickerList));
-            unitTypePicker.SetBinding(Picker.SelectedIndexProperty, nameof(ViewModel.UnitTypePickerSelectedIndex));
-            unitTypePicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ViewModel.UnitTypePickerSelectedIndexChangedCommand));
+            unitTypePicker.SetBinding(Picker.ItemsSourceProperty, nameof(ConversionViewModel.UnitTypePickerList));
+            unitTypePicker.SetBinding(Picker.SelectedIndexProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndex));
+            unitTypePicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndexChangedCommand));
 
             var numberToConvertLabel = new DarkPurpleLabel { Text = "Number to Convert" };
 
             var numberToConvertEntry = new Entry
             {
+                TextColor = Color.Black,
                 Keyboard = Keyboard.Numeric,
                 Placeholder = "Enter Number",
                 BackgroundColor = ColorConstants.LightestPurple
             };
-            numberToConvertEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.NumberToConvertEntryText));
+            numberToConvertEntry.SetBinding(Entry.TextProperty, nameof(ConversionViewModel.NumberToConvertEntryText));
 
             var originalUnitsLabel = new DarkPurpleLabel { Text = "Original Units" };
 
             var originalUnitsPicker = new UnitsPicker { Title = "Original Units" };
-            originalUnitsPicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.OriginalUnitsPickerList));
-            originalUnitsPicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.OriginalUnitsPickerSelectedItem));
-            originalUnitsPicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ViewModel.OriginalUnitsPickerSelectedIndexChangedCommand));
+            originalUnitsPicker.SetBinding(Picker.ItemsSourceProperty, nameof(ConversionViewModel.OriginalUnitsPickerList));
+            originalUnitsPicker.SetBinding(Picker.SelectedItemProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedItem));
+            originalUnitsPicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedIndexChangedCommand));
 
             var convertedUnitsLabel = new DarkPurpleLabel { Text = "Converted Units" };
 
             var convertedUnitsPicker = new UnitsPicker { Title = "Converted Units" };
-            convertedUnitsPicker.SetBinding(Picker.ItemsSourceProperty, nameof(ViewModel.ConvertedUnitsPickerList));
-            convertedUnitsPicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.ConvertedUnitsPickerSelectedItem));
-            convertedUnitsPicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand));
+            convertedUnitsPicker.SetBinding(Picker.ItemsSourceProperty, nameof(ConversionViewModel.ConvertedUnitsPickerList));
+            convertedUnitsPicker.SetBinding(Picker.SelectedItemProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedItem));
+            convertedUnitsPicker.SetBinding(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand));
 
             var convertButton = new BounceButton
             {
@@ -47,12 +48,12 @@ namespace XamConverter
                 BackgroundColor = ColorConstants.DarkPurple,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
-            convertButton.SetBinding(Button.CommandProperty, nameof(ViewModel.ConvertButtonCommand));
+            convertButton.SetBinding(Button.CommandProperty, nameof(ConversionViewModel.ConvertButtonCommand));
 
             var convertedNumberLabel = new DarkPurpleLabel { HorizontalTextAlignment = TextAlignment.Center };
-            convertedNumberLabel.SetBinding(Label.TextProperty, nameof(ViewModel.ConvertedNumberLabelText));
+            convertedNumberLabel.SetBinding(Label.TextProperty, nameof(ConversionViewModel.ConvertedNumberLabelText));
 
-            this.SetBinding(TitleProperty, nameof(ViewModel.TitleText));
+            this.SetBinding(TitleProperty, nameof(ConversionViewModel.TitleText));
 
             BackgroundColor = ColorConstants.LightPurple;
 

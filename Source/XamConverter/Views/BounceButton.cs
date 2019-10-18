@@ -15,8 +15,8 @@ namespace XamConverter
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     Unfocus();
-                    await bounceButton?.ScaleTo(1.05, 100);
-                    await bounceButton?.ScaleTo(1, 100);
+                    await bounceButton.ScaleTo(1.05, 100);
+                    await bounceButton.ScaleTo(1, 100);
                 });
             }
         }

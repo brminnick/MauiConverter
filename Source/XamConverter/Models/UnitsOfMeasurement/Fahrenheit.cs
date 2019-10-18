@@ -1,11 +1,11 @@
 ﻿using System;
+using Xamarin.Essentials;
 
 namespace XamConverter
 {
-    public class Fahrenheit : UnitOfMeasurementModel
+    class Fahrenheit : UnitOfMeasurementModel
     {
-        static readonly Lazy<Fahrenheit> _instanceHolder = 
-            new Lazy<Fahrenheit>(() => new Fahrenheit());
+        static readonly Lazy<Fahrenheit> _instanceHolder = new Lazy<Fahrenheit>(() => new Fahrenheit());
 
         Fahrenheit() : base(UnitOfMeasurement.Temperature)
         {
@@ -13,14 +13,10 @@ namespace XamConverter
 
         public static Fahrenheit Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double unitsInCelsius)
-        {
-            return unitsInCelsius * 9 / 5 + 32;
-        }
+        public override double ConvertFromBaseUnits(double unitsInKelvin) =>
+            UnitConverters.CelsiusToFahrenheit(UnitConverters.KelvinToCelsius(unitsInKelvin));
 
-        public override double ConvertToBaseUnits(double unitsInFahrenheit)
-        {
-            return (unitsInFahrenheit - 32) * 5 / 9;
-        }
+        public override double ConvertToBaseUnits(double unitsInFahrenheit) =>
+            UnitConverters.CelsiusToKelvin(UnitConverters.FahrenheitToCelsius(unitsInFahrenheit));
     }
 }

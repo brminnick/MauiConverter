@@ -2,10 +2,9 @@
 
 namespace XamConverter
 {
-    public class Kilometers : UnitOfMeasurementModel
+    class Kilometers : UnitOfMeasurementModel
     {
-        static readonly Lazy<Kilometers> _instanceHolder =
-            new Lazy<Kilometers>(() => new Kilometers());
+        static readonly Lazy<Kilometers> _instanceHolder = new Lazy<Kilometers>(() => new Kilometers());
 
         Kilometers() : base(UnitOfMeasurement.Length)
         {
@@ -13,14 +12,8 @@ namespace XamConverter
 
         public static Kilometers Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double valueInKilometers)
-        {
-            return valueInKilometers / 100000;
-        }
+        public override double ConvertFromBaseUnits(double valueInMeters) => valueInMeters / 1000;
 
-        public override double ConvertToBaseUnits(double valueInBaseUnit)
-        {
-            return valueInBaseUnit * 100000;
-        }
+        public override double ConvertToBaseUnits(double valueInKilometers) => valueInKilometers * 1000;
     }
 }
