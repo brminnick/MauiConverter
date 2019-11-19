@@ -28,7 +28,7 @@ namespace XamConverter
 
         int _unitTypePickerSelectedIndex;
 
-        string _numberToConvertEntryText = string.Empty,
+        string _numberToConvertEntryText = 0.ToString(),
             _convertedNumberLabelText = string.Empty,
             _originalUnitsPickerSelectedItem = string.Empty,
             _convertedUnitsPickerSelectedItem = string.Empty,
@@ -43,9 +43,7 @@ namespace XamConverter
 
         public ConversionViewModel()
         {
-            NumberToConvertEntryText = 0.ToString();
-
-            var initialUnitOfMeasurement = (UnitOfMeasurement)0;
+            UnitOfMeasurement initialUnitOfMeasurement = 0;
 
             PopulateUnitTypePickerList();
             PopulateUnitsPickerLists(initialUnitOfMeasurement);
