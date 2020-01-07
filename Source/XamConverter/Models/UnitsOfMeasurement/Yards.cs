@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 
 namespace XamConverter
 {
@@ -12,8 +13,8 @@ namespace XamConverter
 
         public static Yards Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double unitInMeters) => unitInMeters * 1.0936;
+        public override double ConvertFromBaseUnits(double unitInMeters) => UnitConverters.MetersToInternationalFeet(unitInMeters) / 3;
 
-        public override double ConvertToBaseUnits(double unitInYards) => unitInYards / 1.0936;
+        public override double ConvertToBaseUnits(double unitInYards) => UnitConverters.InternationalFeetToMeters(unitInYards * 3);
     }
 }

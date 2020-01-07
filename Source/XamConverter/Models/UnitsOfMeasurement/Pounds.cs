@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 
 namespace XamConverter
 {
@@ -12,8 +13,8 @@ namespace XamConverter
 
         public static Pounds Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double unitsInGrams) => unitsInGrams / 453.59237;
+        public override double ConvertFromBaseUnits(double unitsInGrams) => UnitConverters.KilogramsToPounds(unitsInGrams / 1000);
 
-        public override double ConvertToBaseUnits(double unitsInPounds) => unitsInPounds * 453.59237;
+        public override double ConvertToBaseUnits(double unitsInPounds) => UnitConverters.PoundsToKilograms(unitsInPounds) * 1000;
     }
 }

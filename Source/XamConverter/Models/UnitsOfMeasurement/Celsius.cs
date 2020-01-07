@@ -13,10 +13,8 @@ namespace XamConverter
 
         public static Celsius Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double unitsInKelvin) =>
-            UnitConverters.KelvinToCelsius(unitsInKelvin);
+        public override double ConvertFromBaseUnits(double unitsInKelvin) => UnitConverters.KelvinToCelsius(unitsInKelvin);
 
-        public override double ConvertToBaseUnits(double unitsInCelsius) =>
-            UnitConverters.CelsiusToKelvin(unitsInCelsius);
+        public override double ConvertToBaseUnits(double unitsInCelsius) => UnitConverters.CelsiusToKelvin(unitsInCelsius);
     }
 }

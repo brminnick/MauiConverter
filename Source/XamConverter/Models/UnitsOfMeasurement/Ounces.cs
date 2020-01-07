@@ -1,4 +1,5 @@
 using System;
+using Xamarin.Essentials;
 
 namespace XamConverter
 {
@@ -12,8 +13,8 @@ namespace XamConverter
 
         public static Ounces Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double numberInGrams) => numberInGrams / 28.35;
+        public override double ConvertFromBaseUnits(double numberInGrams) => UnitConverters.KilogramsToPounds(numberInGrams / 1000) * 16;
 
-        public override double ConvertToBaseUnits(double numberInOunces) => numberInOunces * 28.35;
+        public override double ConvertToBaseUnits(double numberInOunces) => UnitConverters.PoundsToKilograms(numberInOunces / 16) * 1000;
     }
 }
