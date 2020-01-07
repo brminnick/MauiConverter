@@ -1,4 +1,6 @@
 ﻿using System;
+using Xamarin.Essentials;
+
 namespace XamConverter
 {
     class Feet : UnitOfMeasurementModel
@@ -11,8 +13,8 @@ namespace XamConverter
 
         public static Feet Instance => _instanceHolder.Value;
 
-        public override double ConvertFromBaseUnits(double valueInMeters) => valueInMeters * 3.2808399;
+        public override double ConvertFromBaseUnits(double valueInMeters) => UnitConverters.MetersToInternationalFeet(valueInMeters);
 
-        public override double ConvertToBaseUnits(double valueInFeet) => valueInFeet / 3.2808399;
+        public override double ConvertToBaseUnits(double valueInFeet) => UnitConverters.InternationalFeetToMeters(valueInFeet);
     }
 }
