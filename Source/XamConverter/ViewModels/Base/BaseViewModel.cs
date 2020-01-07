@@ -7,7 +7,7 @@ using AsyncAwaitBestPractices;
 
 namespace XamConverter
 {
-    class BaseViewModel : INotifyPropertyChanged
+    abstract class BaseViewModel : INotifyPropertyChanged
     {
         readonly WeakEventManager _notifyPropertyChangedEventManager = new WeakEventManager();
 
