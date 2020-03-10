@@ -101,9 +101,9 @@
         <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.0-pre2" />
-        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.4.0-pre" />
+        <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.0" />
+        <PackageReference Include="Xamarin.Forms" Version="4.6.0.379-pre1" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -111,7 +111,6 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
-        <Folder Include="CustomRenderers\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -123,7 +122,6 @@
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
-        <Compile Include="CustomRenderers\NavigationPageCustomRenderer.cs" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\XamConverter\XamConverter.csproj">

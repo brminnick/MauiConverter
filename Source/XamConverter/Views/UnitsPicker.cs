@@ -6,8 +6,9 @@ namespace XamConverter
 {
     public class UnitsPicker : Picker
     {
-        public UnitsPicker()
+        public UnitsPicker(string title)
         {
+            Title = title;
             TextColor = Color.Black;
             BackgroundColor = ColorConstants.LightestPurple;
             SelectedIndexChanged += HandleSelectedIndexChanged;

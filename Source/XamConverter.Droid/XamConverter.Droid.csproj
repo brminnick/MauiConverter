@@ -59,9 +59,9 @@
         <Reference Include="Mono.Android" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.0-pre2" />
-        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.4.0-pre" />
+        <PackageReference Include="AsyncAwaitBestPractices" Version="4.1.0" />
+        <PackageReference Include="Xamarin.Forms" Version="4.6.0.379-pre1" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
