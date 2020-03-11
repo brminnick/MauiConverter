@@ -44,7 +44,7 @@ namespace XamConverter
                         .Row (Row.NumberToConvert) .Column (Column.Label),
 
                     new NumberToConvertEntry ()
-                        .Row (Row.NumberToConvert) .Column(Column.Input)
+                        .Row (Row.NumberToConvert) .Column (Column.Input)
                         .Bind (nameof(vm.NumberToConvertEntryText)),
 
                     new DarkPurpleLabel ("Original Units")
@@ -57,16 +57,16 @@ namespace XamConverter
                         .Bind (Picker.SelectedItemProperty, nameof(vm.OriginalUnitsPickerSelectedItem)),
 
                     new DarkPurpleLabel ("Converted Units")
-                        .Row (Row.ConvertedUnits) .Column(Column.Label),
+                        .Row (Row.ConvertedUnits) .Column (Column.Label),
 
                     new UnitsPicker ("Converted Units")
-                        .Row (Row.ConvertedUnits) .Column(Column.Input)
+                        .Row (Row.ConvertedUnits) .Column (Column.Input)
                         .Bind (Picker.ItemsSourceProperty, nameof(vm.ConvertedUnitsPickerList))
                         .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.ConvertedUnitsPickerSelectedIndexChangedCommand))
                         .Bind (Picker.SelectedItemProperty, nameof(vm.ConvertedUnitsPickerSelectedItem)),
 
-                    new DarkPurpleLabel ("") { HorizontalTextAlignment = TextAlignment.Center }
-                        .Row (Row.ConvertedNumber) .ColumnSpan (All<Column>())
+                    new DarkPurpleLabel ("")
+                        .Row (Row.ConvertedNumber) .ColumnSpan (All<Column>()) .TextCenterHorizontal ()
                         .Bind (nameof(vm.ConvertedNumberLabelText)),
 
                     new ConvertButton ()
