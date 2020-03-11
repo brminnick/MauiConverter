@@ -37,15 +37,15 @@ namespace XamConverter
                     new UnitsPicker ("Unit Type")
                         .Row (Row.UnitType) .Column (Column.Input)
                         .Bind (Picker.ItemsSourceProperty, nameof(vm.UnitTypePickerList))
-                        .Bind (Picker.SelectedIndexProperty, nameof(vm.UnitTypePickerSelectedIndex))
-                        .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.UnitTypePickerSelectedIndexChangedCommand)),
+                        .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.UnitTypePickerSelectedIndexChangedCommand))
+                        .Bind (nameof(vm.UnitTypePickerSelectedIndex)),
 
                     new DarkPurpleLabel ("Number to Convert")
                         .Row (Row.NumberToConvert) .Column (Column.Label),
 
                     new NumberToConvertEntry ()
                         .Row (Row.NumberToConvert) .Column(Column.Input)
-                        .Bind (Entry.TextProperty, nameof(vm.NumberToConvertEntryText)),
+                        .Bind (nameof(vm.NumberToConvertEntryText)),
 
                     new DarkPurpleLabel ("Original Units")
                         .Row (Row.OriginalUnits) .Column (Column.Label),
@@ -53,8 +53,8 @@ namespace XamConverter
                     new UnitsPicker ("Original Units")
                         .Row (Row.OriginalUnits) .Column (Column.Input)
                         .Bind (Picker.ItemsSourceProperty, nameof(vm.OriginalUnitsPickerList))
-                        .Bind (Picker.SelectedItemProperty, nameof(vm.OriginalUnitsPickerSelectedItem))
-                        .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.OriginalUnitsPickerSelectedIndexChangedCommand)),
+                        .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.OriginalUnitsPickerSelectedIndexChangedCommand))
+                        .Bind (Picker.SelectedItemProperty, nameof(vm.OriginalUnitsPickerSelectedItem)),
 
                     new DarkPurpleLabel ("Converted Units")
                         .Row (Row.ConvertedUnits) .Column(Column.Label),
@@ -62,16 +62,16 @@ namespace XamConverter
                     new UnitsPicker ("Converted Units")
                         .Row (Row.ConvertedUnits) .Column(Column.Input)
                         .Bind (Picker.ItemsSourceProperty, nameof(vm.ConvertedUnitsPickerList))
-                        .Bind (Picker.SelectedItemProperty, nameof(vm.ConvertedUnitsPickerSelectedItem))
-                        .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.ConvertedUnitsPickerSelectedIndexChangedCommand)),
+                        .Bind (UnitsPicker.SelectedIndexChangedCommandProperty, nameof(vm.ConvertedUnitsPickerSelectedIndexChangedCommand))
+                        .Bind (Picker.SelectedItemProperty, nameof(vm.ConvertedUnitsPickerSelectedItem)),
 
                     new DarkPurpleLabel ("") { HorizontalTextAlignment = TextAlignment.Center }
                         .Row (Row.ConvertedNumber) .ColumnSpan (All<Column>())
-                        .Bind (Label.TextProperty, nameof(vm.ConvertedNumberLabelText)),
+                        .Bind (nameof(vm.ConvertedNumberLabelText)),
 
                     new ConvertButton ()
                         .Row (Row.ConvertButton) .ColumnSpan (All<Column>()) .FillExpandHorizontal()
-                        .Bind (Button.CommandProperty, nameof(vm.ConvertButtonCommand))
+                        .Bind (nameof(vm.ConvertButtonCommand))
                 }
             } .Center ();
         }
