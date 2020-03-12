@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Markup;
 using static Xamarin.Forms.Markup.GridRowsColumns;
+using static XamConverter.Views.MarkupExtensions;
 
 namespace XamConverter
 {
@@ -19,12 +20,12 @@ namespace XamConverter
                 ColumnSpacing = 20,
 
                 RowDefinitions = Rows.Define (
-                    (Row.UnitType, Star),
+                    (Row.UnitType       , Star),
                     (Row.NumberToConvert, Star),
-                    (Row.OriginalUnits, Star),
-                    (Row.ConvertedUnits, Star),
+                    (Row.OriginalUnits  , Star),
+                    (Row.ConvertedUnits , Star),
                     (Row.ConvertedNumber, Star),
-                    (Row.ConvertButton, new GridLength(2, GridUnitType.Star))),
+                    (Row.ConvertButton  , Stars(2))),
 
                 ColumnDefinitions = Columns.Define (
                     (Column.Label, Star),
