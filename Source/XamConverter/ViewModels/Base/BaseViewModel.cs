@@ -30,6 +30,6 @@ namespace XamConverter
         }
 
         void OnPropertyChanged([CallerMemberName] string name = "") =>
-            _notifyPropertyChangedEventManager.HandleEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
+            _notifyPropertyChangedEventManager.RaiseEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
     }
 }

@@ -221,7 +221,7 @@ namespace XamConverter
 
                 var inputAsConvertedUnits = secondItemSelectedType.ConvertFromBaseUnits(inputAsBaseUnits);
 
-                ConvertedNumberLabelText = $"{NumberToConvertEntryText} {OriginalUnitsPickerSelectedItem} = {inputAsConvertedUnits.ToString("N3")} {ConvertedUnitsPickerSelectedItem}";
+                ConvertedNumberLabelText = $"{NumberToConvertEntryText} {OriginalUnitsPickerSelectedItem} = {inputAsConvertedUnits:N3} {ConvertedUnitsPickerSelectedItem}";
             }
             catch
             {
@@ -233,6 +233,6 @@ namespace XamConverter
         bool IsConvertedUnitsPickerSelectedItemValid() => !string.IsNullOrWhiteSpace(ConvertedUnitsPickerSelectedItem);
         bool IsNumberToConvertEntryTextValid() => double.TryParse(NumberToConvertEntryText, out _);
 
-        void OnConversionError(string message) => _conversionErrorEventManager.HandleEvent(this, message, nameof(ConversionError));
+        void OnConversionError(string message) => _conversionErrorEventManager.RaiseEvent(this, message, nameof(ConversionError));
     }
 }
