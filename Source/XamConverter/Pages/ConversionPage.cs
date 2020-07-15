@@ -31,7 +31,8 @@ namespace XamConverter
                     (Column.Label, Star),
                     (Column.Input, Star)),
 
-                Children = {
+                Children =
+                {
                     new DarkPurpleLabel("Unit Type")
                        .Row(Row.UnitType).Column(Column.Label),
 
@@ -68,11 +69,11 @@ namespace XamConverter
 
                     new DarkPurpleLabel("")
                        .Row(Row.ConvertedNumber).ColumnSpan(All<Column>()).TextCenterHorizontal()
-                       .Bind(nameof(ConversionViewModel.ConvertedNumberLabelText)),
+                       .Bind(Label.TextProperty, nameof(ConversionViewModel.ConvertedNumberLabelText)),
 
                     new ConvertButton()
                        .Row(Row.ConvertButton).ColumnSpan(All<Column>()).FillExpandHorizontal()
-                       .Bind(nameof(ConversionViewModel.ConvertButtonCommand))
+                       .Bind(Button.CommandProperty, nameof(ConversionViewModel.ConvertButtonCommand))
                 }
             }.Center();
         }
