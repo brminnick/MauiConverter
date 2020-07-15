@@ -10,8 +10,7 @@ namespace XamConverter
 {
     class ConversionViewModel : BaseViewModel
     {
-        readonly WeakEventManager<string> _conversionErrorEventManager = new WeakEventManager<string>();
-        readonly IReadOnlyDictionary<string, UnitOfMeasurementModel> _unitOfMeasurementDictionary = new Dictionary<string, UnitOfMeasurementModel>
+        readonly static IReadOnlyDictionary<string, UnitOfMeasurementModel> _unitOfMeasurementDictionary = new Dictionary<string, UnitOfMeasurementModel>
         {
             { nameof(Celsius), Celsius.Instance },
             { nameof(Fahrenheit), Fahrenheit.Instance },
@@ -26,6 +25,8 @@ namespace XamConverter
             { nameof(Yards), Yards.Instance },
         };
 
+        readonly WeakEventManager<string> _conversionErrorEventManager = new WeakEventManager<string>();
+
         int _unitTypePickerSelectedIndex;
 
         string _numberToConvertEntryText = 0.ToString(),
@@ -37,15 +38,13 @@ namespace XamConverter
         ICommand? _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
             _convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
 
-        List<string> _originalUnitsPickerList = Enumerable.Empty<string>().ToList(),
-            _convertedUnitsPickerList = Enumerable.Empty<string>().ToList(),
-            _unitTypePickerList = Enumerable.Empty<string>().ToList();
+        IReadOnlyList<string> _originalUnitsPickerList = Enumerable.Empty<string>().ToList(),
+            _convertedUnitsPickerList = Enumerable.Empty<string>().ToList();
 
         public ConversionViewModel()
         {
             UnitOfMeasurement initialUnitOfMeasurement = 0;
 
-            PopulateUnitTypePickerList();
             PopulateUnitsPickerLists(initialUnitOfMeasurement);
             SetTitleText(initialUnitOfMeasurement);
         }
@@ -68,28 +67,24 @@ namespace XamConverter
         public ICommand UnitTypePickerSelectedIndexChangedCommand =>
             _unitTypePickerSelectedIndexChangedCommand ??= new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand);
 
-        public List<string> UnitTypePickerList
-        {
-            get => _unitTypePickerList;
-            set => SetProperty(ref _unitTypePickerList, value);
-        }
+        public IReadOnlyList<string> UnitTypePickerList { get; } = Enum.GetNames(typeof(UnitOfMeasurement));
 
-        public List<string> OriginalUnitsPickerList
+        public IReadOnlyList<string> OriginalUnitsPickerList
         {
             get => _originalUnitsPickerList;
             set => SetProperty(ref _originalUnitsPickerList, value);
+        }
+
+        public IReadOnlyList<string> ConvertedUnitsPickerList
+        {
+            get => _convertedUnitsPickerList;
+            set => SetProperty(ref _convertedUnitsPickerList, value);
         }
 
         public string TitleText
         {
             get => _titleText;
             set => SetProperty(ref _titleText, value);
-        }
-
-        public List<string> ConvertedUnitsPickerList
-        {
-            get => _convertedUnitsPickerList;
-            set => SetProperty(ref _convertedUnitsPickerList, value);
         }
 
         public string NumberToConvertEntryText
@@ -137,12 +132,6 @@ namespace XamConverter
 
             OriginalUnitsPickerList = originalUnitsPickerList;
             ConvertedUnitsPickerList = convertedUnitsPickerList;
-        }
-
-        void PopulateUnitTypePickerList()
-        {
-            foreach (UnitOfMeasurement item in Enum.GetValues(typeof(UnitOfMeasurement)))
-                UnitTypePickerList.Add(item.ToString());
         }
 
         void ExecuteOriginalUnitsPickerSelectedIndexChangedCommand()

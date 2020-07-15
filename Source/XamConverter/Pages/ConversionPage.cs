@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Markup;
 using static Xamarin.Forms.Markup.GridRowsColumns;
-using static XamConverter.Views.MarkupExtensions;
+using static XamConverter.MarkupExtensions;
 
 namespace XamConverter
 {
@@ -39,15 +39,15 @@ namespace XamConverter
                     new UnitsPicker("Unit Type")
                        .Row(Row.UnitType).Column(Column.Input)
                        .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.UnitTypePickerList))
-                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndexChangedCommand))
-                       .Bind(nameof(ConversionViewModel.UnitTypePickerSelectedIndex)),
+                       .Bind(Picker.SelectedIndexProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndex))
+                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndexChangedCommand)),
 
                     new DarkPurpleLabel("Number to Convert")
                        .Row(Row.NumberToConvert).Column(Column.Label),
 
                     new NumberToConvertEntry()
                        .Row(Row.NumberToConvert).Column(Column.Input)
-                       .Bind(nameof(ConversionViewModel.NumberToConvertEntryText)),
+                       .Bind(Entry.TextProperty, nameof(ConversionViewModel.NumberToConvertEntryText)),
 
                     new DarkPurpleLabel("Original Units")
                        .Row(Row.OriginalUnits).Column(Column.Label),
@@ -55,8 +55,8 @@ namespace XamConverter
                     new UnitsPicker("Original Units")
                        .Row(Row.OriginalUnits).Column(Column.Input)
                        .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.OriginalUnitsPickerList))
-                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedIndexChangedCommand))
-                       .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedItem)),
+                       .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedItem))
+                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedIndexChangedCommand)),
 
                     new DarkPurpleLabel("Converted Units")
                        .Row(Row.ConvertedUnits).Column(Column.Label),
@@ -64,8 +64,8 @@ namespace XamConverter
                     new UnitsPicker("Converted Units")
                        .Row(Row.ConvertedUnits).Column(Column.Input)
                        .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.ConvertedUnitsPickerList))
-                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand))
-                       .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedItem)),
+                       .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedItem))
+                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand)),
 
                     new DarkPurpleLabel("")
                        .Row(Row.ConvertedNumber).ColumnSpan(All<Column>()).TextCenterHorizontal()

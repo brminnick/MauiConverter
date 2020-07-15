@@ -6,6 +6,9 @@ namespace XamConverter
 {
     public class UnitsPicker : Picker
     {
+        public static readonly BindableProperty SelectedIndexChangedCommandProperty =
+            BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(UnitsPicker), null);
+
         public UnitsPicker(string title)
         {
             Title = title;
@@ -13,9 +16,6 @@ namespace XamConverter
             BackgroundColor = ColorConstants.LightestPurple;
             SelectedIndexChanged += HandleSelectedIndexChanged;
         }
-
-        public static readonly BindableProperty SelectedIndexChangedCommandProperty =
-            BindableProperty.Create(nameof(SelectedIndexChangedCommand), typeof(ICommand), typeof(UnitsPicker), null);
 
         public ICommand? SelectedIndexChangedCommand
         {

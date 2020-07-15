@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace XamConverter.Views
+namespace XamConverter
 {
     public static class MarkupExtensions
     {

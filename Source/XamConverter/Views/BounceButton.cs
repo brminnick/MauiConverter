@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace XamConverter
@@ -10,15 +10,13 @@ namespace XamConverter
 
         void HandleButtonClick(object sender, EventArgs e)
         {
-            if (sender is BounceButton bounceButton)
+            var bounceButton = (BounceButton)sender;
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    Unfocus();
-                    await bounceButton.ScaleTo(1.05, 100);
-                    await bounceButton.ScaleTo(1, 100);
-                });
-            }
+                Unfocus();
+                await bounceButton.ScaleTo(1.05, 100);
+                await bounceButton.ScaleTo(1, 100);
+            });
         }
     }
 }
