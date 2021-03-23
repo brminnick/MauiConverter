@@ -9,7 +9,7 @@ namespace XamConverter
 {
     abstract class BaseViewModel : INotifyPropertyChanged
     {
-        readonly WeakEventManager _notifyPropertyChangedEventManager = new WeakEventManager();
+        readonly WeakEventManager _notifyPropertyChangedEventManager = new();
 
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
         {

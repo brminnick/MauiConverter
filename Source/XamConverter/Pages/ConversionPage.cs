@@ -1,8 +1,7 @@
 ﻿using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Markup;
-using static Xamarin.Forms.Markup.GridRowsColumns;
-using static XamConverter.MarkupExtensions;
+using Xamarin.CommunityToolkit.Markup;
+using static Xamarin.CommunityToolkit.Markup.GridRowsColumns;
 
 namespace XamConverter
 {
@@ -13,7 +12,7 @@ namespace XamConverter
             BackgroundColor = ColorConstants.LightPurple;
             ViewModel.ConversionError += HandleConversionError;
 
-            this.Bind(nameof(ConversionViewModel.TitleText));
+            this.Bind(TitleProperty, nameof(ConversionViewModel.TitleText));
 
             Content = new Grid
             {
@@ -38,9 +37,9 @@ namespace XamConverter
 
                     new UnitsPicker("Unit Type")
                        .Row(Row.UnitType).Column(Column.Input)
-                       .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.UnitTypePickerList))
+                       .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.UnitTypePickerList), BindingMode.OneTime)
                        .Bind(Picker.SelectedIndexProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndex))
-                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndexChangedCommand)),
+                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.UnitTypePickerSelectedIndexChangedCommand), BindingMode.OneTime),
 
                     new DarkPurpleLabel("Number to Convert")
                        .Row(Row.NumberToConvert).Column(Column.Label),
@@ -56,7 +55,7 @@ namespace XamConverter
                        .Row(Row.OriginalUnits).Column(Column.Input)
                        .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.OriginalUnitsPickerList))
                        .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedItem))
-                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedIndexChangedCommand)),
+                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.OriginalUnitsPickerSelectedIndexChangedCommand), BindingMode.OneTime),
 
                     new DarkPurpleLabel("Converted Units")
                        .Row(Row.ConvertedUnits).Column(Column.Label),
@@ -65,7 +64,7 @@ namespace XamConverter
                        .Row(Row.ConvertedUnits).Column(Column.Input)
                        .Bind(Picker.ItemsSourceProperty, nameof(ConversionViewModel.ConvertedUnitsPickerList))
                        .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedItem))
-                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand)),
+                       .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand), BindingMode.OneTime),
 
                     new DarkPurpleLabel("")
                        .Row(Row.ConvertedNumber).ColumnSpan(All<Column>()).TextCenterHorizontal()
@@ -73,7 +72,7 @@ namespace XamConverter
 
                     new ConvertButton()
                        .Row(Row.ConvertButton).ColumnSpan(All<Column>()).FillExpandHorizontal()
-                       .Bind(Button.CommandProperty, nameof(ConversionViewModel.ConvertButtonCommand))
+                       .Bind(Button.CommandProperty, nameof(ConversionViewModel.ConvertButtonCommand), BindingMode.OneTime)
                 }
             }.Center();
         }
@@ -81,8 +80,8 @@ namespace XamConverter
         enum Row { UnitType, NumberToConvert, OriginalUnits, ConvertedUnits, ConvertedNumber, ConvertButton };
         enum Column { Label, Input };
 
-        void HandleConversionError(object sender, string message) =>
-            MainThread.BeginInvokeOnMainThread(async () => await DisplayAlert("Conversion Error", message, "OK"));
+        async void HandleConversionError(object sender, string message) =>
+            await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Conversion Error", message, "OK"));
 
         class NumberToConvertEntry : Entry
         {

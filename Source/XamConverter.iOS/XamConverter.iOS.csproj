@@ -10,6 +10,8 @@
         <AssemblyName>ConverterApp.iOS</AssemblyName>
         <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
         <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
         <DebugSymbols>true</DebugSymbols>
@@ -101,9 +103,9 @@
         <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="AsyncAwaitBestPractices" Version="5.0.0-pre2" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.1558-pre3" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.6.0-pre2" />
+        <PackageReference Include="AsyncAwaitBestPractices" Version="5.1.0" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

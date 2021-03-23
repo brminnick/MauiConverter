@@ -25,25 +25,27 @@ namespace XamConverter
             { nameof(Yards), Yards.Instance },
         };
 
-        readonly WeakEventManager<string> _conversionErrorEventManager = new WeakEventManager<string>();
+        readonly WeakEventManager<string> _conversionErrorEventManager = new();
 
         int _unitTypePickerSelectedIndex;
 
         string _numberToConvertEntryText = 0.ToString(),
-            _convertedNumberLabelText = string.Empty,
-            _originalUnitsPickerSelectedItem = string.Empty,
-            _convertedUnitsPickerSelectedItem = string.Empty,
-            _titleText = string.Empty;
-
-        ICommand? _convertButtonCommand, _originalUnitsPickerSelectedIndexChangedCommand,
-            _convertedUnitsPickerSelectedIndexChangedCommand, _unitTypePickerSelectedIndexChangedCommand;
+                _convertedNumberLabelText = string.Empty,
+                _originalUnitsPickerSelectedItem = string.Empty,
+                _convertedUnitsPickerSelectedItem = string.Empty,
+                _titleText = string.Empty;
 
         IReadOnlyList<string> _originalUnitsPickerList = Enumerable.Empty<string>().ToList(),
-            _convertedUnitsPickerList = Enumerable.Empty<string>().ToList();
+                                _convertedUnitsPickerList = Enumerable.Empty<string>().ToList();
 
         public ConversionViewModel()
         {
             UnitOfMeasurement initialUnitOfMeasurement = 0;
+
+            ConvertButtonCommand = new Command(ExecuteConvertButtonCommand);
+            UnitTypePickerSelectedIndexChangedCommand = new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand);
+            OriginalUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteOriginalUnitsPickerSelectedIndexChangedCommand);
+            ConvertedUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteConvertedUnitsPickerSelectedIndexChangedCommand);
 
             PopulateUnitsPickerLists(initialUnitOfMeasurement);
             SetTitleText(initialUnitOfMeasurement);
@@ -55,19 +57,12 @@ namespace XamConverter
             remove => _conversionErrorEventManager.RemoveEventHandler(value);
         }
 
-        public ICommand ConvertButtonCommand =>
-            _convertButtonCommand ??= new Command(ExecuteConvertButtonCommand);
-
-        public ICommand OriginalUnitsPickerSelectedIndexChangedCommand =>
-            _originalUnitsPickerSelectedIndexChangedCommand ??= new Command(ExecuteOriginalUnitsPickerSelectedIndexChangedCommand);
-
-        public ICommand ConvertedUnitsPickerSelectedIndexChangedCommand =>
-            _convertedUnitsPickerSelectedIndexChangedCommand ??= new Command(ExecuteConvertedUnitsPickerSelectedIndexChangedCommand);
-
-        public ICommand UnitTypePickerSelectedIndexChangedCommand =>
-            _unitTypePickerSelectedIndexChangedCommand ??= new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand);
-
         public IReadOnlyList<string> UnitTypePickerList { get; } = Enum.GetNames(typeof(UnitOfMeasurement));
+
+        public ICommand ConvertButtonCommand { get; }
+        public ICommand UnitTypePickerSelectedIndexChangedCommand { get; }
+        public ICommand OriginalUnitsPickerSelectedIndexChangedCommand { get; }
+        public ICommand ConvertedUnitsPickerSelectedIndexChangedCommand { get; }
 
         public IReadOnlyList<string> OriginalUnitsPickerList
         {
@@ -218,9 +213,9 @@ namespace XamConverter
             }
         }
 
+        bool IsNumberToConvertEntryTextValid() => double.TryParse(NumberToConvertEntryText, out _);
         bool IsOriginalUnitsPickerSelectedItemValid() => !string.IsNullOrWhiteSpace(OriginalUnitsPickerSelectedItem);
         bool IsConvertedUnitsPickerSelectedItemValid() => !string.IsNullOrWhiteSpace(ConvertedUnitsPickerSelectedItem);
-        bool IsNumberToConvertEntryTextValid() => double.TryParse(NumberToConvertEntryText, out _);
 
         void OnConversionError(string message) => _conversionErrorEventManager.RaiseEvent(this, message, nameof(ConversionError));
     }
