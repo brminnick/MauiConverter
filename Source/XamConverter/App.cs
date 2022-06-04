@@ -1,20 +1,18 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+﻿using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
 
 namespace XamConverter
 {
-	public class App : Xamarin.Forms.Application
-	{
+	public class App : Microsoft.Maui.Controls.Application
+    {
 		public App()
 		{
-            var mainPage = new Xamarin.Forms.NavigationPage(new ConversionPage())
+            var mainPage = new Microsoft.Maui.Controls.NavigationPage(new ConversionPage())
 			{
 				BarBackgroundColor = ColorConstants.DarkPurple,
-				BarTextColor = Color.White
+				BarTextColor = Colors.White
 			};
 
-            mainPage.On<iOS>().SetPrefersLargeTitles(true);
+            mainPage.On<Microsoft.Maui.Controls.PlatformConfiguration.iOS>().SetPrefersLargeTitles(true);
 
             MainPage = mainPage;
 		}

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using System.Windows.Input;
 
 namespace XamConverter
 {
@@ -12,7 +10,7 @@ namespace XamConverter
         public UnitsPicker(string title)
         {
             Title = title;
-            TextColor = Color.Black;
+            TextColor = Colors.Black;
             BackgroundColor = ColorConstants.LightestPurple;
             SelectedIndexChanged += HandleSelectedIndexChanged;
         }
@@ -23,6 +21,6 @@ namespace XamConverter
             set => SetValue(SelectedIndexChangedCommandProperty, value);
         }
 
-        void HandleSelectedIndexChanged(object sender, EventArgs e) => SelectedIndexChangedCommand?.Execute(null);
+        void HandleSelectedIndexChanged(object? sender, EventArgs e) => SelectedIndexChangedCommand?.Execute(null);
     }
 }

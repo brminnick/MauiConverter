@@ -1,14 +1,11 @@
-﻿using Xamarin.Forms;
+﻿namespace XamConverter;
 
-namespace XamConverter
+class DarkPurpleLabel : Label
 {
-	public class DarkPurpleLabel : Label
-	{
-		public DarkPurpleLabel(string text)
-		{
-			Text = text;
-			TextColor = ColorConstants.DarkestPurple;
-			VerticalTextAlignment = TextAlignment.Center;
-		}
-	}
+    public DarkPurpleLabel(in string text)
+    {
+        Text = text;
+        TextColor = ColorConstants.DarkestPurple;
+        VerticalTextAlignment = TextAlignment.Center;
+    }
 }

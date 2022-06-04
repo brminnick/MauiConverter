@@ -1,12 +1,10 @@
-﻿using Xamarin.Forms;
-
-namespace XamConverter
+﻿namespace XamConverter
 {
-	public static class ColorConstants
-	{
-		public static readonly Color LightestPurple = Color.FromHex("F2EBFF");
-		public static readonly Color LightPurple = Color.FromHex("CEC0ED");
-		public static readonly Color DarkPurple = Color.FromHex("7E68C2");
-		public static readonly Color DarkestPurple = Color.FromHex("614CA1");
-	}
+    public static class ColorConstants
+    {
+        public static Color LightestPurple { get; } = Color.FromArgb("F2EBFF");
+        public static Color LightPurple { get; } = Color.FromArgb("CEC0ED");
+        public static Color DarkPurple { get; } = Color.FromArgb("7E68C2");
+        public static Color DarkestPurple { get; } = Color.FromArgb("614CA1");
+    }
 }

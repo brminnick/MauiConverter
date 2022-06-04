@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using AsyncAwaitBestPractices;
-using Xamarin.Forms;
 
 namespace XamConverter
 {
@@ -25,7 +20,7 @@ namespace XamConverter
             { nameof(Yards), Yards.Instance },
         };
 
-        readonly WeakEventManager<string> _conversionErrorEventManager = new();
+        readonly WeakEventManager _conversionErrorEventManager = new();
 
         int _unitTypePickerSelectedIndex;
 
@@ -40,6 +35,7 @@ namespace XamConverter
 
         public ConversionViewModel()
         {
+            var temp = Kelvin.Instance;
             UnitOfMeasurement initialUnitOfMeasurement = 0;
 
             ConvertButtonCommand = new Command(ExecuteConvertButtonCommand);
@@ -217,6 +213,6 @@ namespace XamConverter
         bool IsOriginalUnitsPickerSelectedItemValid() => !string.IsNullOrWhiteSpace(OriginalUnitsPickerSelectedItem);
         bool IsConvertedUnitsPickerSelectedItemValid() => !string.IsNullOrWhiteSpace(ConvertedUnitsPickerSelectedItem);
 
-        void OnConversionError(string message) => _conversionErrorEventManager.RaiseEvent(this, message, nameof(ConversionError));
+        void OnConversionError(string message) => _conversionErrorEventManager.HandleEvent(this, message, nameof(ConversionError));
     }
 }

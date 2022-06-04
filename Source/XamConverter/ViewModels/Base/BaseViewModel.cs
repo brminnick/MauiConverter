@@ -1,35 +1,19 @@
-using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-using AsyncAwaitBestPractices;
+namespace XamConverter;
 
-namespace XamConverter
+[INotifyPropertyChanged]
+abstract partial class BaseViewModel
 {
-    abstract class BaseViewModel : INotifyPropertyChanged
+    protected bool SetProperty<T>(ref T field, in T newValue, in Action? onChanged = null, [CallerMemberName] in string? propertyName = null)
     {
-        readonly WeakEventManager _notifyPropertyChangedEventManager = new();
+        var didPropertyChange = SetProperty(ref field, newValue, propertyName);
 
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
-        {
-            add => _notifyPropertyChangedEventManager.AddEventHandler(value);
-            remove => _notifyPropertyChangedEventManager.RemoveEventHandler(value);
-        }
-
-        protected void SetProperty<T>(ref T backingStore, T value, Action? onChanged = null, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return;
-
-            backingStore = value;
-
+        if (didPropertyChange)
             onChanged?.Invoke();
 
-            OnPropertyChanged(propertyName);
-        }
-
-        void OnPropertyChanged([CallerMemberName] string name = "") =>
-            _notifyPropertyChangedEventManager.RaiseEvent(this, new PropertyChangedEventArgs(name), nameof(INotifyPropertyChanged.PropertyChanged));
+        return didPropertyChange;
     }
 }

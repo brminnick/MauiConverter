@@ -4,13 +4,9 @@ namespace XamConverter
 {
     class Kilograms : UnitOfMeasurementModel
     {
-        static readonly Lazy<Kilograms> _instanceHolder = new Lazy<Kilograms>(() => new Kilograms());
-
         Kilograms() : base(UnitOfMeasurement.Mass)
         {
         }
-
-        public static Kilograms Instance => _instanceHolder.Value;
 
         public override double ConvertFromBaseUnits(double numberInGrams) => numberInGrams / 1000;
 
