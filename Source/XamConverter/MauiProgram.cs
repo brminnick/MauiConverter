@@ -1,16 +1,15 @@
 ﻿using CommunityToolkit.Maui.Markup;
 
-namespace XamConverter
-{
-    public static class MauiProgram
-    {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder.UseMauiApp<App>()
-                    .UseMauiCommunityToolkitMarkup();
+namespace XamConverter;
 
-            return builder.Build();
-        }
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder.UseMauiApp<App>()
+                .UseMauiCommunityToolkitMarkup();
+
+        return builder.Build();
     }
 }

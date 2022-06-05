@@ -1,18 +1,16 @@
-﻿using System;
-namespace XamConverter
+﻿namespace XamConverter;
+
+class Kelvin : UnitOfMeasurementModel, ISingleton<Kelvin>
 {
-    class Kelvin : UnitOfMeasurementModel, ISingleton<Kelvin>
+    readonly static Lazy<Kelvin> _instanceHolder = new(() => new Kelvin());
+
+    Kelvin() : base(UnitOfMeasurement.Temperature)
     {
-        readonly static Lazy<Kelvin> _instanceHolder = new(() => new Kelvin());
-
-        Kelvin() : base(UnitOfMeasurement.Temperature)
-        {
-        }
-
-        public static Kelvin Instance => _instanceHolder.Value;
-
-        public override double ConvertFromBaseUnits(double unitsInKelvin) => unitsInKelvin;
-
-        public override double ConvertToBaseUnits(double unitsInKelvin) => unitsInKelvin;
     }
+
+    public static Kelvin Instance => _instanceHolder.Value;
+
+    public override double ConvertFromBaseUnits(double unitsInKelvin) => unitsInKelvin;
+
+    public override double ConvertToBaseUnits(double unitsInKelvin) => unitsInKelvin;
 }
