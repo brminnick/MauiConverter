@@ -10,6 +10,9 @@ public static class MauiProgram
                         .UseMauiApp<App>()
                         .UseMauiCommunityToolkitMarkup();
 
+        // Add Shell
+        builder.Services.AddSingleton<AppShell>();
+
         // Add Pages
         builder.Services.AddTransient<ConversionPage>();
 

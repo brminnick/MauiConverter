@@ -1,19 +1,26 @@
-﻿using Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;
+﻿using CommunityToolkit.Maui.Markup;
 
 namespace XamConverter;
 
-class App : Microsoft.Maui.Controls.Application
+class App : Application
 {
-    public App(ConversionPage conversionPage)
+    public App(AppShell appShell)
     {
-        var mainPage = new Microsoft.Maui.Controls.NavigationPage(conversionPage)
-        {
-            BarBackgroundColor = ColorConstants.DarkPurple,
-            BarTextColor = Colors.White
-        };
+		Resources = new ResourceDictionary()
+		{
+			new Style<Shell>(
+				(Shell.NavBarHasShadowProperty, true),
+				(Shell.TitleColorProperty, Colors.White),
+				(Shell.DisabledColorProperty, Colors.White),
+				(Shell.UnselectedColorProperty, Colors.White),
+				(Shell.ForegroundColorProperty, Colors.White),
+				(Shell.BackgroundColorProperty, ColorConstants.DarkPurple)).ApplyToDerivedTypes(true),
 
-        mainPage.On<Microsoft.Maui.Controls.PlatformConfiguration.iOS>().SetPrefersLargeTitles(true);
+			new Style<NavigationPage>(
+				(NavigationPage.BarTextColorProperty, Colors.White),
+				(NavigationPage.BarBackgroundColorProperty, ColorConstants.DarkPurple)).ApplyToDerivedTypes(true)
+		};
 
-        MainPage = mainPage;
+		MainPage = appShell;
     }
 }
