@@ -1,14 +1,19 @@
 ﻿using CommunityToolkit.Maui.Markup;
+using Microsoft.Maui.Dispatching;
 using static CommunityToolkit.Maui.Markup.GridRowsColumns;
 
 namespace XamConverter;
 
 class ConversionPage : BaseContentPage<ConversionViewModel>
 {
-    public ConversionPage()
+    readonly IDispatcher _dispatcher;
+
+    public ConversionPage(IDispatcher dispatcher, ConversionViewModel conversionViewModel) : base(conversionViewModel)
     {
+        _dispatcher = dispatcher;
+
         BackgroundColor = ColorConstants.LightPurple;
-        ViewModel.ConversionError += HandleConversionError;
+        BindingContext.ConversionError += HandleConversionError;
 
         this.Bind(TitleProperty, nameof(ConversionViewModel.TitleText));
 
@@ -84,5 +89,5 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
     enum Column { Label, Input };
 
     async void HandleConversionError(object? sender, string message) =>
-        await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Conversion Error", message, "OK"));
+        await _dispatcher.DispatchAsync(() => DisplayAlert("Conversion Error", message, "OK"));
 }

@@ -2,11 +2,11 @@
 
 namespace XamConverter;
 
-public class App : Microsoft.Maui.Controls.Application
+class App : Microsoft.Maui.Controls.Application
 {
-    public App()
+    public App(ConversionPage conversionPage)
     {
-        var mainPage = new Microsoft.Maui.Controls.NavigationPage(new ConversionPage())
+        var mainPage = new Microsoft.Maui.Controls.NavigationPage(conversionPage)
         {
             BarBackgroundColor = ColorConstants.DarkPurple,
             BarTextColor = Colors.White

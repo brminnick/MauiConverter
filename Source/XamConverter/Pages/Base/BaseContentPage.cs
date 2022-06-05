@@ -1,8 +1,8 @@
 ﻿namespace XamConverter;
 
-class BaseContentPage<TViewModel> : ContentPage where TViewModel : BaseViewModel, new()
+abstract class BaseContentPage<TViewModel> : ContentPage where TViewModel : BaseViewModel
 {
-    public BaseContentPage() => BindingContext = ViewModel;
+    protected BaseContentPage(TViewModel viewModel) => base.BindingContext = viewModel;
 
-    protected TViewModel ViewModel { get; } = new TViewModel();
+    protected new TViewModel BindingContext => (TViewModel)base.BindingContext;
 }

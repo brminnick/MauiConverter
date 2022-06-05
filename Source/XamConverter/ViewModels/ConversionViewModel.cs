@@ -38,7 +38,17 @@ partial class ConversionViewModel : BaseViewModel
     IReadOnlyList<string> _originalUnitsPickerList = Enumerable.Empty<string>().ToList(),
                             _convertedUnitsPickerList = Enumerable.Empty<string>().ToList();
 
-    public ConversionViewModel()
+    public ConversionViewModel(Feet feet,
+                                Miles miles,
+                                Yards yards,
+                                Kelvin kelvin,
+                                Meters meters,
+                                Ounces ounces,
+                                Pounds pounds,
+                                Celsius celsius,
+                                Kilograms kilograms,
+                                Fahrenheit fahrenheit,
+                                Kilometers kilometers)
     {
         UnitOfMeasurement initialUnitOfMeasurement = 0;
 
