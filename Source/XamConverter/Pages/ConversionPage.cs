@@ -43,8 +43,10 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
                 new DarkPurpleLabel("Number to Convert")
                    .Row(Row.NumberToConvert).Column(Column.Label),
 
-                new NumberToConvertEntry()
+                new Entry { BackgroundColor = ColorConstants.LightestPurple, Keyboard = Keyboard.Numeric }
                    .Row(Row.NumberToConvert).Column(Column.Input)
+                   .Placeholder("Enter Number")
+                   .TextColor(Colors.Black)
                    .Bind(Entry.TextProperty, nameof(ConversionViewModel.NumberToConvertEntryText)),
 
                 new DarkPurpleLabel("Original Units")
@@ -69,8 +71,10 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
                    .Row(Row.ConvertedNumber).ColumnSpan(All<Column>()).TextCenterHorizontal()
                    .Bind(Label.TextProperty, nameof(ConversionViewModel.ConvertedNumberLabelText)),
 
-                new ConvertButton()
+                new Button { BackgroundColor = ColorConstants.DarkPurple }
                    .Row(Row.ConvertButton).ColumnSpan(All<Column>()).FillHorizontal()
+                   .Text("Convert", Colors.White)
+                   .Margin(20)
                    .Bind(Button.CommandProperty, nameof(ConversionViewModel.ConvertButtonCommand), BindingMode.OneTime)
             }
         }.Center();
@@ -81,26 +85,4 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
 
     async void HandleConversionError(object? sender, string message) =>
         await MainThread.InvokeOnMainThreadAsync(() => DisplayAlert("Conversion Error", message, "OK"));
-
-    class NumberToConvertEntry : Entry
-    {
-        public NumberToConvertEntry()
-        {
-            TextColor = Colors.Black;
-            Keyboard = Keyboard.Numeric;
-            Placeholder = "Enter Number";
-            BackgroundColor = ColorConstants.LightestPurple;
-        }
-    }
-
-    class ConvertButton : BounceButton
-    {
-        public ConvertButton()
-        {
-            Text = "Convert";
-            TextColor = Colors.White;
-            Margin = 20;
-            BackgroundColor = ColorConstants.DarkPurple;
-        }
-    }
 }

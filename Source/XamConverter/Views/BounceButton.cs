@@ -1,6 +1,6 @@
 ﻿namespace XamConverter;
 
-public class BounceButton : Button
+class BounceButton : Button
 {
     public BounceButton() => Clicked += HandleButtonClick;
 
@@ -8,7 +8,7 @@ public class BounceButton : Button
     {
         ArgumentNullException.ThrowIfNull(sender);
 
-        var bounceButton = (BounceButton)sender ;
+        var bounceButton = (BounceButton)sender;
         MainThread.BeginInvokeOnMainThread(async () =>
         {
             Unfocus();
