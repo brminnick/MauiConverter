@@ -1,10 +1,14 @@
 ﻿namespace XamConverter
 {
-    class Miles : UnitOfMeasurementModel
+    class Miles : UnitOfMeasurementModel, ISingleton<Miles>
     {
+        readonly static Lazy<Miles> _instanceHolder = new(() => new Miles());
+
         Miles() : base(UnitOfMeasurement.Length)
         {
         }
+
+        public static Miles Instance => _instanceHolder.Value;
 
         public override double ConvertFromBaseUnits(double valueInMeters) => UnitConverters.KilometersToMiles(valueInMeters / 1000);
 

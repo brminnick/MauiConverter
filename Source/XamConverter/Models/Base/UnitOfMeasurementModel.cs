@@ -1,13 +1,9 @@
-using XamConverter.Models.Base;
-
 namespace XamConverter
 {
-    abstract class UnitOfMeasurementModel : ISingleton<UnitOfMeasurementModel>
-    {        
+    abstract class UnitOfMeasurementModel
+    {
         protected UnitOfMeasurementModel(UnitOfMeasurement measurementType) =>
             MeasurementType = measurementType;
-
-        public static UnitOfMeasurementModel Instance { get; }
 
         public UnitOfMeasurement MeasurementType { get; }
 
@@ -15,6 +11,7 @@ namespace XamConverter
 
         public abstract double ConvertFromBaseUnits(double baseUnit);
     }
+
 
     enum UnitOfMeasurement { Length, Mass, Temperature };
 }

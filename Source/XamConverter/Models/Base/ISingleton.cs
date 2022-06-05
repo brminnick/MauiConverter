@@ -1,4 +1,4 @@
-﻿namespace XamConverter.Models.Base;
+﻿namespace XamConverter;
 
 interface ISingleton<T>
 {
