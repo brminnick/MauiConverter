@@ -15,6 +15,7 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
         Content = new Grid
         {
             ColumnSpacing = 20,
+            RowSpacing = 8,
 
             RowDefinitions = Rows.Define(
                 (Row.UnitType, Star),
