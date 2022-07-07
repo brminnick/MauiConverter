@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Text;
 using System.Windows.Input;
 
@@ -30,9 +31,7 @@ partial class ConversionViewModel : BaseViewModel
     string _convertedNumberLabelText = string.Empty,
             _originalUnitsPickerSelectedItem = string.Empty,
             _convertedUnitsPickerSelectedItem = string.Empty,
-            _titleText = string.Empty;
-
-    string _numberToConvertEntryText = 0.ToString();
+            _titleText = string.Empty, _numberToConvertEntryText = 0.ToString();
 
     [ObservableProperty]
     IReadOnlyList<string> _originalUnitsPickerList = Enumerable.Empty<string>().ToList(),
@@ -52,11 +51,6 @@ partial class ConversionViewModel : BaseViewModel
     {
         UnitOfMeasurement initialUnitOfMeasurement = 0;
 
-        ConvertButtonCommand = new Command(ExecuteConvertButtonCommand);
-        UnitTypePickerSelectedIndexChangedCommand = new Command(ExecuteUnitTypePickerSelectedIndexChangedCommand);
-        OriginalUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteOriginalUnitsPickerSelectedIndexChangedCommand);
-        ConvertedUnitsPickerSelectedIndexChangedCommand = new Command(ExecuteConvertedUnitsPickerSelectedIndexChangedCommand);
-
         PopulateUnitsPickerLists(initialUnitOfMeasurement);
         SetTitleText(initialUnitOfMeasurement);
     }
@@ -68,17 +62,6 @@ partial class ConversionViewModel : BaseViewModel
     }
 
     public IReadOnlyList<string> UnitTypePickerList { get; } = Enum.GetNames(typeof(UnitOfMeasurement));
-
-    public ICommand ConvertButtonCommand { get; }
-    public ICommand UnitTypePickerSelectedIndexChangedCommand { get; }
-    public ICommand OriginalUnitsPickerSelectedIndexChangedCommand { get; }
-    public ICommand ConvertedUnitsPickerSelectedIndexChangedCommand { get; }
-
-    public string NumberToConvertEntryText
-    {
-        get => _numberToConvertEntryText;
-        set => SetProperty(ref _numberToConvertEntryText, value, ExecuteNumberToConvertEntryTextChanged);
-    }
 
     void PopulateUnitsPickerLists(UnitOfMeasurement unitOfMeasurement)
     {
@@ -96,7 +79,8 @@ partial class ConversionViewModel : BaseViewModel
         ConvertedUnitsPickerList = convertedUnitsPickerList;
     }
 
-    void ExecuteOriginalUnitsPickerSelectedIndexChangedCommand()
+    [RelayCommand]
+    void OriginalUnitsPickerSelectedIndexChanged()
     {
         if (IsConvertedUnitsPickerSelectedItemValid()
             && IsNumberToConvertEntryTextValid())
@@ -105,7 +89,8 @@ partial class ConversionViewModel : BaseViewModel
         }
     }
 
-    void ExecuteConvertedUnitsPickerSelectedIndexChangedCommand()
+    [RelayCommand]
+    void ConvertedUnitsPickerSelectedIndexChanged()
     {
         if (IsOriginalUnitsPickerSelectedItemValid()
             && IsNumberToConvertEntryTextValid())
@@ -114,7 +99,8 @@ partial class ConversionViewModel : BaseViewModel
         }
     }
 
-    void ExecuteUnitTypePickerSelectedIndexChangedCommand()
+    [RelayCommand]
+    void UnitTypePickerSelectedIndexChanged()
     {
         var selectedUnitOfMeasurement = (UnitOfMeasurement)UnitTypePickerSelectedIndex;
         PopulateUnitsPickerLists(selectedUnitOfMeasurement);
@@ -124,7 +110,8 @@ partial class ConversionViewModel : BaseViewModel
 
     void SetTitleText(UnitOfMeasurement unitOfMeasurement) => TitleText = $"Convert {unitOfMeasurement}";
 
-    void ExecuteConvertButtonCommand()
+    [RelayCommand]
+    void ConvertButton()
     {
         if (!IsOriginalUnitsPickerSelectedItemValid()
             || !IsConvertedUnitsPickerSelectedItemValid()
@@ -144,16 +131,6 @@ partial class ConversionViewModel : BaseViewModel
             OnConversionError(errorStringBuilder.ToString());
         }
         else
-        {
-            ConvertUnits();
-        }
-    }
-
-    void ExecuteNumberToConvertEntryTextChanged()
-    {
-        if (!string.IsNullOrWhiteSpace(OriginalUnitsPickerSelectedItem)
-            && !string.IsNullOrWhiteSpace(ConvertedUnitsPickerSelectedItem)
-            && !string.IsNullOrWhiteSpace(NumberToConvertEntryText))
         {
             ConvertUnits();
         }
@@ -185,4 +162,14 @@ partial class ConversionViewModel : BaseViewModel
     bool IsConvertedUnitsPickerSelectedItemValid() => !string.IsNullOrWhiteSpace(ConvertedUnitsPickerSelectedItem);
 
     void OnConversionError(string message) => _conversionErrorEventManager.HandleEvent(this, message, nameof(ConversionError));
+
+    partial void OnNumberToConvertEntryTextChanged(string value)
+    {
+        if (!string.IsNullOrWhiteSpace(OriginalUnitsPickerSelectedItem)
+            && !string.IsNullOrWhiteSpace(ConvertedUnitsPickerSelectedItem)
+            && !string.IsNullOrWhiteSpace(NumberToConvertEntryText))
+        {
+            ConvertUnits();
+        }
+    }
 }
