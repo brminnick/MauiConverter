@@ -15,8 +15,8 @@ public static class MauiProgram
         // Add Shell
         builder.Services.AddSingleton<AppShell>();
 
-        // Add Pages + Viewmodels
-        builder.Services.AddTransientWithShellRoute<ConversionPage, ConversionViewModel>();
+        // Add Pages + ViewModels
+        builder.Services.AddTransientWithShellRoute<ConversionPage, ConversionViewModel>($"//{nameof(ConversionPage)}");
 
         // Add Services
         builder.Services.AddSingleton(Feet.Instance);
@@ -32,12 +32,5 @@ public static class MauiProgram
         builder.Services.AddSingleton(Kilometers.Instance);
 
         return builder.Build();
-    }
-
-    static IServiceCollection AddTransientWithShellRoute<TPage, TViewModel>(this IServiceCollection services)
-        where TPage : BaseContentPage<TViewModel>
-        where TViewModel : BaseViewModel
-    {
-        return services.AddTransientWithShellRoute<TPage, TViewModel>(AppShell.GetRoute<TPage, TViewModel>());
     }
 }
