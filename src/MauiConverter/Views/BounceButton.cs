@@ -4,12 +4,12 @@ class BounceButton : Button
 {
     public BounceButton() => Clicked += HandleButtonClick;
 
-    void HandleButtonClick(object? sender, EventArgs e)
+    async void HandleButtonClick(object? sender, EventArgs e)
     {
         ArgumentNullException.ThrowIfNull(sender);
 
         var bounceButton = (BounceButton)sender;
-        MainThread.BeginInvokeOnMainThread(async () =>
+        await Dispatcher.DispatchAsync(async () =>
         {
             Unfocus();
             await bounceButton.ScaleTo(1.05, 100);

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -14,7 +15,7 @@ partial class ConversionViewModel : BaseViewModel
 
     [ObservableProperty]
     string _titleText = string.Empty,
-            _numberToConvertEntryText = 0.ToString(),
+            _numberToConvertEntryText = "0",
             _convertedNumberLabelText = string.Empty,
             _originalUnitsPickerSelectedItem = string.Empty,
             _convertedUnitsPickerSelectedItem = string.Empty;
@@ -141,7 +142,7 @@ partial class ConversionViewModel : BaseViewModel
     {
         try
         {
-            var numberToConvert = double.Parse(NumberToConvertEntryText);
+            var numberToConvert = double.Parse(NumberToConvertEntryText, CultureInfo.CurrentCulture);
 
             var firstItemSelectedType = _unitOfMeasurementDictionary[OriginalUnitsPickerSelectedItem];
             var secondItemSelectedType = _unitOfMeasurementDictionary[ConvertedUnitsPickerSelectedItem];

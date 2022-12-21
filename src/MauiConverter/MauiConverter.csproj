@@ -12,8 +12,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
-		<EnablePreviewFeatures>true</EnablePreviewFeatures>
-		<LangVersion>preview</LangVersion>
 
 		<!-- Display name -->
 		<ApplicationTitle>MauiConverter</ApplicationTitle>

@@ -43,10 +43,11 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
                 new DarkPurpleLabel("Number to Convert")
                    .Row(Row.NumberToConvert).Column(Column.Label),
 
-                new Entry { BackgroundColor = ColorConstants.LightestPurple, Keyboard = Keyboard.Numeric }
+                new Entry { Keyboard = Keyboard.Numeric }
                    .Row(Row.NumberToConvert).Column(Column.Input)
                    .Placeholder("Enter Number")
                    .TextColor(Colors.Black)
+                   .BackgroundColor(ColorConstants.LightestPurple)
                    .Bind(Entry.TextProperty, nameof(ConversionViewModel.NumberToConvertEntryText)),
 
                 new DarkPurpleLabel("Original Units")
@@ -67,13 +68,14 @@ class ConversionPage : BaseContentPage<ConversionViewModel>
                    .Bind(Picker.SelectedItemProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedItem))
                    .Bind(UnitsPicker.SelectedIndexChangedCommandProperty, nameof(ConversionViewModel.ConvertedUnitsPickerSelectedIndexChangedCommand), BindingMode.OneTime),
 
-                new DarkPurpleLabel("")
+                new DarkPurpleLabel()
                    .Row(Row.ConvertedNumber).ColumnSpan(All<Column>()).TextCenterHorizontal()
                    .Bind(Label.TextProperty, nameof(ConversionViewModel.ConvertedNumberLabelText)),
 
-                new Button { BackgroundColor = ColorConstants.DarkPurple }
+                new BounceButton()
                    .Row(Row.ConvertButton).ColumnSpan(All<Column>()).FillHorizontal()
-                   .Text("Convert", Colors.White)
+                   .BackgroundColor(ColorConstants.DarkPurple)
+				   .Text("Convert", Colors.White)
                    .Margin(20)
                    .Bind(Button.CommandProperty, nameof(ConversionViewModel.ConvertButtonCommand), BindingMode.OneTime)
             }
