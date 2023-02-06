@@ -4,8 +4,8 @@ namespace MauiConverter;
 
 class App : Application
 {
-    public App(AppShell appShell)
-    {
+	public App(AppShell appShell)
+	{
 		Resources = new ResourceDictionary()
 		{
 			new Style<Shell>(
@@ -22,5 +22,5 @@ class App : Application
 		};
 
 		MainPage = appShell;
-    }
+	}
 }

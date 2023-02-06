@@ -2,5 +2,5 @@
 
 interface ISingleton<T>
 {
-    abstract static T Instance { get; }
+	abstract static T Instance { get; }
 }
