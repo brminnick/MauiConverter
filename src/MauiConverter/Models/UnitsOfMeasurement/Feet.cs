@@ -2,15 +2,15 @@
 
 class Feet : UnitOfMeasurementModel, ISingleton<Feet>
 {
-    readonly static Lazy<Feet> _instanceHolder = new(() => new Feet());
+	readonly static Lazy<Feet> _instanceHolder = new(() => new Feet());
 
-    Feet() : base(UnitOfMeasurement.Length)
-    {
-    }
+	Feet() : base(UnitOfMeasurement.Length)
+	{
+	}
 
-    public static Feet Instance => _instanceHolder.Value;
+	public static Feet Instance => _instanceHolder.Value;
 
-    public override double ConvertFromBaseUnits(double valueInMeters) => UnitConverters.MetersToInternationalFeet(valueInMeters);
+	public override double ConvertFromBaseUnits(double valueInMeters) => UnitConverters.MetersToInternationalFeet(valueInMeters);
 
-    public override double ConvertToBaseUnits(double valueInFeet) => UnitConverters.InternationalFeetToMeters(valueInFeet);
+	public override double ConvertToBaseUnits(double valueInFeet) => UnitConverters.InternationalFeetToMeters(valueInFeet);
 }

@@ -2,8 +2,8 @@
 
 class AppShell : Shell
 {
-    public AppShell(ConversionPage conversionPage)
-    {
-        Items.Add(conversionPage);
-    }
+	public AppShell(ConversionPage conversionPage)
+	{
+		Items.Add(conversionPage);
+	}
 }
